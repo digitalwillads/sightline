@@ -88,9 +88,7 @@ for f,dom,page,slug in BRANDS:
     for i,r in enumerate(d['ads']): by[r['angle']].append(i)
     angles=[]
     for a in order:
-        top=d['ads'][by[a][0]]
         angles.append(dict(name=a, share=round(mix[a]/tot*100), count=mix[a],
-                           ex=trim(ex[a],64), exDays=top['days'],
                            note=label.NOTES.get(dom,{}).get(a,''),
                            ads=[card(i) for i in by[a]]))
     nodes=[dict(x=L['map'][a][0], y=L['map'][a][1], n=mix[a], l=a) for a in order if a in L['map']]
@@ -102,14 +100,6 @@ for f,dom,page,slug in BRANDS:
         avatar=f'assets/{slug}-avatar.jpg',
         follow=f"Page {page}", since=f"Oldest live ad {datefmt(d['ads'][-1]['first'] if False else min(r['first'] for r in d['ads']))}",
         total=d['live'],
-        # Six numbers was two too many: the longest run is repeated in 03 and in
-        # every angle header, and the platform count said nothing.
-        stats=[
-          dict(v=str(d['live']),k='live ads',dd=f"+{d['last30']} in 30 days"),
-          dict(v=str(d['clusters']),k='distinct creatives',dd=f"{d['live']} ads grouped"),
-          dict(v=str(d['median']),s='days',k='median age',dd='slow rotation' if d['median']>90 else 'fast rotation',hot=d['median']<=90),
-          dict(v=human(d['reach']),k='EU reach, live ads',dd='Ad Library reported'),
-        ],
         ads=cards, angles=angles, nodes=nodes,
         gap=dict(x=L['gap'][0],y=L['gap'][1],l='open'),
         mapNote=L['note'], winners=win)
@@ -118,4 +108,4 @@ js=json.dumps(out,ensure_ascii=False,indent=1)
 open('library_real.json','w').write(js)
 print(js[:600])
 for dom,v in out.items():
-    print(dom, v['total'],'live |',len(v['ads']),'cards |',len(v['angles']),'angles |',v['stats'][3]['v'],'reach')
+    print(dom, v['total'],'live |',len(v['ads']),'cards |',len(v['angles']),'angles |')

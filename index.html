@@ -624,6 +624,85 @@ img{max-width:100%;height:auto;display:block}
 }
 
 /* ==========================================================================
+   05 — YOUR OPENING. The competitor report is evidence; this is the answer.
+   One field, and the URL is used for real: the same Ad Library pull runs on
+   them, so the brief opens with what they are running against what the
+   competitor is running.
+   ========================================================================== */
+.brief-ask{
+  border:1px solid var(--fog);border-radius:var(--r-lg);background:var(--white);
+  padding:1.75rem;display:grid;grid-template-columns:1.1fr .9fr;gap:2rem;align-items:center;
+}
+@media (max-width:820px){ .brief-ask{grid-template-columns:1fr;gap:1.5rem;padding:1.35rem} }
+.brief-ask h4{font-weight:600;font-size:1.15rem;letter-spacing:-.02em;color:var(--black);line-height:1.3}
+.brief-ask p{margin-top:.5rem;font-size:.9375rem;color:var(--stone)}
+.brief-form{display:flex;gap:.55rem;margin-top:1.1rem}
+@media (max-width:560px){ .brief-form{flex-direction:column} }
+.brief-list{list-style:none;display:grid;gap:.55rem}
+.brief-list li{display:flex;gap:.6rem;align-items:flex-start;font-size:.875rem;color:var(--graphite)}
+.brief-list svg{flex:none;margin-top:.25rem;color:var(--accent)}
+
+.brief-steps{display:grid;gap:.1rem;max-width:32rem}
+.brief-steps .step{border-color:var(--fog);color:var(--warm-gray)}
+.brief-steps .step.is-active{color:var(--black)}
+.brief-steps .step.is-done{color:var(--stone)}
+.brief-steps .step-mark{border-color:var(--fog)}
+.brief-steps .step.is-active .step-mark{border-color:var(--accent);border-right-color:transparent}
+.brief-steps .step.is-done .step-mark{border-color:var(--accent);background:var(--accent)}
+
+.brief-block{padding:1.6rem 0;border-top:1px solid var(--fog)}
+.brief-block:first-child{border-top:0;padding-top:0}
+.brief-k{
+  font-size:.6875rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--warm-gray);
+}
+.brief-block h4{margin-top:.6rem;font-weight:600;font-size:1.25rem;letter-spacing:-.02em;color:var(--black);line-height:1.3}
+.brief-block p{margin-top:.6rem;font-size:.9375rem;color:var(--stone);max-width:62ch}
+
+.versus{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--fog);
+  border:1px solid var(--fog);border-radius:var(--r-md);overflow:hidden;margin-top:1rem}
+@media (max-width:560px){ .versus{grid-template-columns:1fr} }
+.versus div{background:var(--white);padding:1.1rem 1.25rem}
+.versus .v{font-weight:500;font-size:1.65rem;letter-spacing:-.03em;color:var(--black);line-height:1.15}
+.versus .k{margin-top:.2rem;font-size:.8125rem;color:var(--stone)}
+.versus .mine .v{color:var(--accent)}
+
+.taken{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem}
+.taken .pill{font-size:.8125rem}
+
+.corner{
+  margin-top:1rem;border:1px solid rgba(196,85,58,.3);background:rgba(196,85,58,.06);
+  border-radius:var(--r-md);padding:1.35rem 1.5rem;
+}
+.corner b{display:block;font-weight:600;font-size:1.05rem;color:var(--accent-hover);letter-spacing:-.01em}
+.corner p{margin-top:.5rem;color:var(--graphite);max-width:58ch}
+
+.tests{display:grid;gap:.75rem;margin-top:1rem}
+.test{
+  display:grid;grid-template-columns:2rem 1fr;gap:1rem;align-items:start;
+  border:1px solid var(--fog);border-radius:var(--r-md);background:var(--white);padding:1.1rem 1.25rem;
+}
+.test-n{font-size:.8125rem;letter-spacing:.1em;color:var(--silver);padding-top:.15rem}
+.test h5{font-weight:600;font-size:1.05rem;line-height:1.3;letter-spacing:-.015em;color:var(--black)}
+.test p{margin-top:.4rem;font-size:.875rem;color:var(--stone)}
+
+.brief-cta{
+  margin-top:1.6rem;padding-top:1.6rem;border-top:1px solid var(--fog);
+  display:grid;grid-template-columns:1fr auto;gap:1.5rem;align-items:center;
+}
+@media (max-width:820px){ .brief-cta{grid-template-columns:1fr} }
+.brief-cta h4{font-weight:600;font-size:1.15rem;letter-spacing:-.02em;color:var(--black);line-height:1.3}
+.brief-cta p{margin-top:.45rem;font-size:.875rem;color:var(--stone);max-width:52ch}
+.brief-send{display:flex;gap:.55rem}
+@media (max-width:560px){ .brief-send{flex-direction:column} }
+
+.header-hint{
+  display:inline-flex;align-items:center;gap:.4rem;margin-top:.5rem;
+  font-size:.8125rem;color:var(--accent);
+}
+.header-hint:hover{color:var(--accent-hover)}
+
+/* ==========================================================================
    ALERTS + AGENCY
    ========================================================================== */
 .alerts{
@@ -707,8 +786,8 @@ p.eyebrow-mute{color:var(--warm-gray)}
     <a href="#" class="wordmark"><span>Digital</span>Will <small>Sightline</small></a>
     <div class="header-spacer"></div>
     <nav class="header-nav">
+      <a href="#opening">Your opening</a>
       <a href="#angles">The angles</a>
-      <a href="#alerts">Alerts</a>
       <a href="#agency">Talk to us</a>
     </nav>
     <button class="btn btn-primary btn-sm" data-open-modal="header">Create account</button>
@@ -780,6 +859,9 @@ p.eyebrow-mute{color:var(--warm-gray)}
           <i id="r-since">Oldest live ad 17 Oct 2025</i>
         </div>
         <p class="rep-source" id="r-source">Live Ad Library data</p>
+        <a class="header-hint" href="#opening">Want your side of this?
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+        </a>
       </div>
       <div class="spacer"></div>
       <div class="rep-actions">
@@ -867,6 +949,45 @@ p.eyebrow-mute{color:var(--warm-gray)}
         <h3>The three ads they will not turn off</h3>
         <p class="lede">These are proven. The new tests are noise until they survive a quarter.</p>
         <div class="sec-body" id="winners"></div>
+      </div>
+    </section>
+
+    <!-- 05 — YOUR OPENING -->
+    <section class="sec" id="opening">
+      <div class="rail">
+        <span class="rail-n">05</span>
+        <span class="rail-l">Your opening</span>
+        <p class="rail-note">The same read, pointed at your site instead of theirs.</p>
+      </div>
+      <div>
+        <h3>Where you should stand</h3>
+        <p class="lede">You have seen what they argue and where their money sits. Here is the ground they left open, and what to put on it.</p>
+        <div class="sec-body">
+
+          <div class="brief-ask" id="brief-ask">
+            <div>
+              <h4>Put in your website.</h4>
+              <p>We run the same Ad Library pull on you, compare your position to theirs, and write the angles worth testing.</p>
+              <form class="brief-form" id="form-brief" novalidate>
+                <div class="field" id="field-brief">
+                  <span class="pre" aria-hidden="true">https://</span>
+                  <input id="input-brief" type="text" placeholder="yourcompany.com" autocomplete="off" spellcheck="false" />
+                </div>
+                <button class="btn btn-primary" type="submit">Build my brief</button>
+              </form>
+              <p class="err" id="err-brief" hidden></p>
+            </div>
+            <ul class="brief-list">
+              <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 12.5l5 5L20 6.5"/></svg> What you are running against what they are running</li>
+              <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 12.5l5 5L20 6.5"/></svg> The angles you would be walking straight into</li>
+              <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 12.5l5 5L20 6.5"/></svg> Three ads to test on the ground nobody holds</li>
+            </ul>
+          </div>
+
+          <div class="brief-steps steps" id="brief-steps" hidden></div>
+
+          <div id="brief-out" hidden></div>
+        </div>
       </div>
     </section>
 
@@ -1555,6 +1676,20 @@ const LIBRARY = {
     "days": 237,
     "why": "Five variants still running after eight months. Huel keeps rebuilding this one instead of replacing it."
    }
+  ],
+  "tests": [
+   {
+    "h": "You didn't save twenty minutes. You got your lunch break back.",
+    "why": "Their whole set sells minutes as a saving. Sell what the minutes are for."
+   },
+   {
+    "h": "Eat like the person you keep meaning to become.",
+    "why": "Nothing in 62 live ads speaks to identity. It is the emptiest ground on the map."
+   },
+   {
+    "h": "The one meal you never negotiate with yourself about.",
+    "why": "They argue discipline through numbers. Argue relief instead."
+   }
   ]
  },
  "specsavers.ie": {
@@ -1991,6 +2126,20 @@ const LIBRARY = {
     "s": "17 variants · 3.9M EU reach",
     "days": 35,
     "why": "Seventeen variants in five weeks. They are hunting the exact wording of a free entitlement."
+   }
+  ],
+  "tests": [
+   {
+    "h": "The free test is the easy part. What you wear for the next three years is not.",
+    "why": "Two thirds of their spend is the free check. Nobody is arguing what happens after it."
+   },
+   {
+    "h": "You look at the world through these for fourteen hours a day.",
+    "why": "Their ads sell an appointment. Sell the thing the appointment is for."
+   },
+   {
+    "h": "The last place to save money is the thing you watch your kids grow up through.",
+    "why": "Price is their whole floor. Premium is unclaimed, and it is where the margin is."
    }
   ]
  },
@@ -2480,6 +2629,20 @@ const LIBRARY = {
     "days": 48,
     "why": "Quote to cover in minutes. It sells the paperwork disappearing, not the cover."
    }
+  ],
+  "tests": [
+   {
+    "h": "The policy you never think about is the one that is working.",
+    "why": "Their price family and their fear family never meet. This joins them."
+   },
+   {
+    "h": "Cover that feels like a decision you made, not a bill you pay.",
+    "why": "Every live ad is a quote or a discount. None of it feels chosen."
+   },
+   {
+    "h": "You are not buying insurance. You are buying the Tuesday where nothing goes wrong.",
+    "why": "Nothing in the set sells the ordinary day the cover protects."
+   }
   ]
  },
  "sample": {
@@ -2821,7 +2984,21 @@ const LIBRARY = {
     "why": "Real customer, real kitchen. The claim comes from a buyer, so it clears the skeptic filter."
    }
   ],
-  "avatar": ""
+  "avatar": "",
+  "tests": [
+   {
+    "h": "Cheaper was never the reason you switched.",
+    "why": "Price anchoring is their heaviest spend. Refusing that frame is the fastest way out of it."
+   },
+   {
+    "h": "The shelf that stays tidy because you stopped buying the rest.",
+    "why": "They sell the product. Sell the result the product leaves behind."
+   },
+   {
+    "h": "You will notice it most on the morning you are running late.",
+    "why": "Their ads argue in the abstract. Put the reader in a specific morning."
+   }
+  ]
  }
 };
 
@@ -2890,7 +3067,7 @@ function paintTicker(){
 }
 
 /* ---------- state -------------------------------------------------------- */
-const STATE = { domain:'', brand:'', key:'sample', real:false, watching:false, email:'' };
+const STATE = { domain:'', brand:'', key:'sample', real:false, mine:'', watching:false, email:'' };
 /* ads not shown on the first screen; opened by the Show all control */
 let REST = [];
 
@@ -3066,6 +3243,14 @@ function renderResults(domain){
   $('#more-wrap').hidden = REST.length === 0;
   $('#more-note').hidden = REST.length !== 0;
 
+  /* 05 starts empty on every new report. */
+  $('#brief-ask').hidden = false;
+  $('#brief-steps').hidden = true;
+  $('#brief-out').hidden = true;
+  $('#brief-out').innerHTML = '';
+  $('#input-brief').value = '';
+  setError('#field-brief','#err-brief',null);
+
   $('#angle-list').innerHTML = data.angles.map((a,i)=>`
     <div class="angle-row" style="--i:${i}">
       <span class="angle-name">${a.name}</span>
@@ -3177,6 +3362,155 @@ $('#btn-new').addEventListener('click', () => {
   $('#input-url').value = '';
   history.replaceState(null,'',location.pathname);
   show('idle');
+});
+
+
+/* ---------- 05 · the positioning brief ----------------------------------- */
+const BRIEF_STEPS = [
+  ['Pulling your live ads',            900],
+  ['Comparing your position to theirs', 800],
+  ['Writing the angles',               1000]
+];
+
+function briefFor(mine, data){
+  /* Their live count is real. So is yours, when the Ad Library has you: the
+     same pull runs on the domain the reader typed. Most prospects come back
+     zero, and that is the strongest line in the brief. */
+  const you   = LIBRARY[mine] && LIBRARY[mine].real ? LIBRARY[mine] : null;
+  const mineN = you ? you.total : 0;
+  const taken = data.angles.slice(0,3);
+  const tests = data.tests || [];
+  const brand = data.brand;
+
+  return `
+    <div class="brief-block">
+      <span class="brief-k">01 · Where you stand today</span>
+      <h4>${mineN ? `You are running ${mineN} ads. They are running ${data.total}.` : `They are running ${data.total} ads. You are running none.`}</h4>
+      <div class="versus">
+        <div><div class="v num">${data.total}</div><div class="k">${brand} · live ads</div></div>
+        <div class="mine"><div class="v num">${mineN}</div><div class="k">${mine} · live ads</div></div>
+      </div>
+      <p>${mineN
+        ? `Both sets are live in the Ad Library, so every claim below is checkable by either of you.`
+        : `The Ad Library has no live ads for ${mine}. Either you are not on Meta yet, or you are not delivering in the EU. Both mean the same thing here: the ground is uncontested by you.`}</p>
+    </div>
+
+    <div class="brief-block">
+      <span class="brief-k">02 · Angles you would be walking into</span>
+      <h4>${taken[0].share + taken[1].share + taken[2].share}% of their spend is already on three arguments.</h4>
+      <div class="taken">
+        ${taken.map(a=>`<span class="pill angle">${a.name} · ${a.share}%</span>`).join('')}
+      </div>
+      <p>Opening on any of these puts you in an auction against ${data.total} live ads that have already been optimised for it. ${taken[0].name} alone carries ${taken[0].count} of them.</p>
+    </div>
+
+    <div class="brief-block">
+      <span class="brief-k">03 · The corner nobody has taken</span>
+      <div class="corner">
+        <b>Premium and emotional. Zero live ads.</b>
+        <p>${data.mapNote}</p>
+      </div>
+    </div>
+
+    <div class="brief-block">
+      <span class="brief-k">04 · Three ads to test</span>
+      <h4>Written for that corner, not for their auction.</h4>
+      <div class="tests">
+        ${tests.map((t,i)=>`
+          <div class="test">
+            <span class="test-n num">0${i+1}</span>
+            <div><h5>${sub(t.h, brand)}</h5><p>${sub(t.why, brand)}</p></div>
+          </div>`).join('')}
+      </div>
+    </div>
+
+    <div class="brief-cta" id="brief-cta">
+      <div>
+        <h4>Want the full brief?</h4>
+        <p>The long version names the offer, the landing page and the budget split to test it with. We send it as a PDF, and we watch ${brand} for you while you run it.</p>
+      </div>
+      <form class="brief-send" id="form-brief-send" novalidate>
+        <div class="field" id="field-brief-send">
+          <input type="email" id="input-brief-send" placeholder="you@company.com" autocomplete="email" />
+        </div>
+        <button class="btn btn-primary" type="submit">Send it</button>
+      </form>
+    </div>
+    <p class="err" id="err-brief-send" hidden></p>
+    <div class="sent" id="brief-sent" hidden style="margin-top:1.35rem;background:var(--white);border-color:var(--fog);box-shadow:none">
+      <b style="color:var(--black)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"><path d="M4 12.5l5 5L20 6.5"/></svg>
+        On its way.
+      </b>
+      <p style="color:var(--stone)">The brief lands in a few minutes, and ${brand} is on your watchlist from now.</p>
+    </div>`;
+}
+
+function runBrief(mine){
+  const started = performance.now();
+  const data = LIBRARY[STATE.key];
+  log('brief','started',{ mine, against:STATE.domain });
+
+  $('#brief-ask').hidden = true;
+  $('#brief-out').hidden = true;
+  const host = $('#brief-steps');
+  host.hidden = false;
+  host.innerHTML = BRIEF_STEPS.map((st,i)=>`
+    <div class="step" data-bstep="${i}">
+      <span class="step-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span>
+      <span>${st[0]}</span><span class="tech" data-bms="${i}"></span>
+    </div>`).join('');
+
+  let i = 0;
+  const tick = () => {
+    if (i > 0){
+      const prev = $(`.step[data-bstep="${i-1}"]`);
+      prev.classList.remove('is-active'); prev.classList.add('is-done');
+      $(`[data-bms="${i-1}"]`).textContent = BRIEF_STEPS[i-1][1] + 'MS';
+    }
+    if (i >= BRIEF_STEPS.length){
+      host.hidden = true;
+      $('#brief-out').innerHTML = briefFor(mine, data);
+      $('#brief-out').hidden = false;
+      wireBriefSend();
+      log('brief','complete',{ mine, elapsed:(performance.now()-started).toFixed(0)+'ms' });
+      return;
+    }
+    $(`.step[data-bstep="${i}"]`).classList.add('is-active');
+    const wait = BRIEF_STEPS[i][1];
+    i++;
+    setTimeout(tick, wait);
+  };
+  tick();
+}
+
+function wireBriefSend(){
+  const f = $('#form-brief-send');
+  if (!f) return;
+  f.addEventListener('submit', ev => {
+    ev.preventDefault();
+    const email = $('#input-brief-send').value.trim();
+    log('input','brief send submitted',email);
+    if (!validEmail(email)) return setError('#field-brief-send','#err-brief-send','Enter a valid work email.');
+    setError('#field-brief-send','#err-brief-send',null);
+    $('#brief-cta').hidden = true;
+    $('#brief-sent').hidden = false;
+    $('#input-alerts').value = email;
+    startWatch(email,'brief');
+    log('convert','brief requested',{ email, mine:STATE.mine, against:STATE.domain });
+  });
+}
+
+$('#form-brief').addEventListener('submit', ev => {
+  ev.preventDefault();
+  const raw = $('#input-brief').value, mine = cleanDomain(raw);
+  log('input','brief domain submitted',{ raw, cleaned:mine });
+  if (!mine) return setError('#field-brief','#err-brief','Enter your website, for example yourcompany.com');
+  if (!validDomain(mine)) return setError('#field-brief','#err-brief','That does not look like a website. Try the domain only.');
+  if (mine === STATE.domain) return setError('#field-brief','#err-brief','That is the competitor you just looked up. Put in your own site.');
+  setError('#field-brief','#err-brief',null);
+  STATE.mine = mine;
+  runBrief(mine);
 });
 
 /* ---------- modal -------------------------------------------------------- */

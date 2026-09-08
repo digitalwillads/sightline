@@ -102,13 +102,13 @@ for f,dom,page,slug in BRANDS:
         avatar=f'assets/{slug}-avatar.jpg',
         follow=f"Page {page}", since=f"Oldest live ad {datefmt(d['ads'][-1]['first'] if False else min(r['first'] for r in d['ads']))}",
         total=d['live'],
+        # Six numbers was two too many: the longest run is repeated in 03 and in
+        # every angle header, and the platform count said nothing.
         stats=[
           dict(v=str(d['live']),k='live ads',dd=f"+{d['last30']} in 30 days"),
-          dict(v=str(d['longest']),s='days',k='longest run',dd='still running'),
           dict(v=str(d['clusters']),k='distinct creatives',dd=f"{d['live']} ads grouped"),
           dict(v=str(d['median']),s='days',k='median age',dd='slow rotation' if d['median']>90 else 'fast rotation',hot=d['median']<=90),
           dict(v=human(d['reach']),k='EU reach, live ads',dd='Ad Library reported'),
-          dict(v=str(len(plats)),k='platforms',dd='every Meta surface'),
         ],
         ads=cards, angles=angles, nodes=nodes,
         gap=dict(x=L['gap'][0],y=L['gap'][1],l='open'),
@@ -118,4 +118,4 @@ js=json.dumps(out,ensure_ascii=False,indent=1)
 open('library_real.json','w').write(js)
 print(js[:600])
 for dom,v in out.items():
-    print(dom, v['total'],'live |',len(v['ads']),'cards |',len(v['angles']),'angles |',v['stats'][4]['v'],'reach')
+    print(dom, v['total'],'live |',len(v['ads']),'cards |',len(v['angles']),'angles |',v['stats'][3]['v'],'reach')

@@ -38,7 +38,19 @@ for f,dom,page,slug in BRANDS:
     ex={}
     for r in d['ads']:
         ex.setdefault(r['angle'], r['h'] or r['copy'][:60])
-    angles=[dict(name=a,share=round(mix[a]/tot*100),count=mix[a],ex=trim(ex[a],64)) for a in order]
+    # Each angle carries the creatives filed under it, longest-running first,
+    # so the share bar can be checked against the ads themselves.
+    by=collections.defaultdict(list)
+    for i,r in enumerate(d['ads']): by[r['angle']].append(i)
+    angles=[]
+    for a in order:
+        idxs=by[a][:4]
+        thumbs=[dict(img=f'assets/{slug}-{i:02d}.jpg', h=trim(d['ads'][i]['h'],52), days=d['ads'][i]['days'])
+                for i in idxs if os.path.exists(os.path.join(ASSETS,f'{slug}-{i:02d}.jpg'))]
+        top=d['ads'][by[a][0]]
+        angles.append(dict(name=a, share=round(mix[a]/tot*100), count=mix[a],
+                           ex=trim(ex[a],64), exDays=top['days'],
+                           thumbs=thumbs, rest=max(0, mix[a]-len(thumbs))))
     plats=sorted({p for r in d['ads'] for p in r['plats']})
     # Advertisers reuse one link title across many creatives. When a headline
     # repeats, fall back to the ad's own opening line so the grid reads as

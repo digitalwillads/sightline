@@ -553,7 +553,26 @@ img{max-width:100%;height:auto;display:block}
 }
 .angle-row:first-child .angle-bar i{background:var(--accent)}
 @keyframes grow{ from{transform:scaleX(0)} to{transform:scaleX(1)} }
-.angle-ex{grid-column:1/-1;margin-top:.6rem;font-size:.875rem;color:var(--stone)}
+.angle-ads{
+  grid-column:1/-1;display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;margin-top:.8rem;
+}
+.angle-strip{display:flex;gap:.35rem}
+.angle-thumb{
+  position:relative;width:54px;height:54px;border-radius:9px;overflow:hidden;
+  border:1px solid var(--fog);background:var(--charcoal);flex:none;
+  transition:transform .3s var(--ease-out),border-color .3s;
+}
+.angle-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.angle-thumb:hover{transform:translateY(-2px) scale(1.04);border-color:var(--accent);z-index:2}
+.angle-thumb .tip{
+  position:absolute;bottom:calc(100% + .4rem);left:50%;transform:translateX(-50%);
+  white-space:nowrap;background:var(--black);color:var(--white);font-size:.75rem;
+  padding:.35rem .6rem;border-radius:6px;opacity:0;pointer-events:none;
+  transition:opacity .25s var(--ease-out);
+}
+.angle-thumb:hover .tip{opacity:1}
+.angle-rest{font-size:.75rem;color:var(--warm-gray)}
+.angle-ex{font-size:.875rem;color:var(--stone);flex:1;min-width:14rem}
 .angle-ex q{color:var(--graphite);quotes:'“' '”'}
 
 /* positioning map */
@@ -1254,55 +1273,236 @@ const LIBRARY = {
     "name": "No prep, no cooking",
     "share": 23,
     "count": 14,
-    "ex": "The ultimate high protein meal"
+    "ex": "The ultimate high protein meal",
+    "exDays": 326,
+    "thumbs": [
+     {
+      "img": "assets/huel-02.jpg",
+      "h": "The ultimate high protein meal",
+      "days": 326
+     },
+     {
+      "img": "assets/huel-09.jpg",
+      "h": "🎉 Life's Too Short For Meal Prep",
+      "days": 237
+     },
+     {
+      "img": "assets/huel-14.jpg",
+      "h": "No time for lunch? No problem.",
+      "days": 237
+     },
+     {
+      "img": "assets/huel-16.jpg",
+      "h": "For Your Inconvenient Meals",
+      "days": 237
+     }
+    ],
+    "rest": 10
    },
    {
     "name": "Protein load",
     "share": 23,
     "count": 14,
-    "ex": "So much more than just a shake"
+    "ex": "So much more than just a shake",
+    "exDays": 237,
+    "thumbs": [
+     {
+      "img": "assets/huel-06.jpg",
+      "h": "So much more than just a shake",
+      "days": 237
+     },
+     {
+      "img": "assets/huel-07.jpg",
+      "h": "✂️ Your Cut Killed Your Gains. Now What?",
+      "days": 237
+     },
+     {
+      "img": "assets/huel-08.jpg",
+      "h": "This Is A Meal. Not A Protein Shake.",
+      "days": 237
+     },
+     {
+      "img": "assets/huel-10.jpg",
+      "h": "You Do the Reps. We Do the Protein.",
+      "days": 237
+     }
+    ],
+    "rest": 10
    },
    {
     "name": "Small change that sticks",
     "share": 18,
     "count": 11,
-    "ex": "The ultimate high protein meal"
+    "ex": "The ultimate high protein meal",
+    "exDays": 326,
+    "thumbs": [
+     {
+      "img": "assets/huel-00.jpg",
+      "h": "The ultimate high protein meal",
+      "days": 326
+     },
+     {
+      "img": "assets/huel-01.jpg",
+      "h": "The ultimate high protein meal",
+      "days": 326
+     },
+     {
+      "img": "assets/huel-03.jpg",
+      "h": "The ultimate high protein meal",
+      "days": 326
+     },
+     {
+      "img": "assets/huel-26.jpg",
+      "h": "For Your Inconvenient Meals.",
+      "days": 53
+     }
+    ],
+    "rest": 7
    },
    {
     "name": "Calorie control",
     "share": 11,
     "count": 7,
-    "ex": "230 Calories That Work Harder"
+    "ex": "230 Calories That Work Harder",
+    "exDays": 60,
+    "thumbs": [
+     {
+      "img": "assets/huel-25.jpg",
+      "h": "230 Calories That Work Harder",
+      "days": 60
+     },
+     {
+      "img": "assets/huel-27.jpg",
+      "h": "190 Calories That Work Harder",
+      "days": 43
+     },
+     {
+      "img": "assets/huel-28.jpg",
+      "h": "Calorie Control, Without The Misery",
+      "days": 43
+     }
+    ],
+    "rest": 4
    },
    {
     "name": "Beats the 3pm crash",
     "share": 6,
     "count": 4,
-    "ex": "Upgrade Your Desk Lunch"
+    "ex": "Upgrade Your Desk Lunch",
+    "exDays": 251,
+    "thumbs": [
+     {
+      "img": "assets/huel-04.jpg",
+      "h": "Upgrade Your Desk Lunch",
+      "days": 251
+     },
+     {
+      "img": "assets/huel-05.jpg",
+      "h": "Day 1 Or One Day. You Decide.",
+      "days": 251
+     },
+     {
+      "img": "assets/huel-18.jpg",
+      "h": "Upgrade Your Desk Lunch 📈",
+      "days": 225
+     },
+     {
+      "img": "assets/huel-32.jpg",
+      "h": "Stop Snacking at 3pm",
+      "days": 36
+     }
+    ],
+    "rest": 0
    },
    {
     "name": "Complete nutrition",
     "share": 6,
     "count": 4,
-    "ex": "Your protein shake is failing you."
+    "ex": "Your protein shake is failing you.",
+    "exDays": 237,
+    "thumbs": [
+     {
+      "img": "assets/huel-13.jpg",
+      "h": "Your protein shake is failing you.",
+      "days": 237
+     },
+     {
+      "img": "assets/huel-22.jpg",
+      "h": "✅ Nutrition You Can Rely On",
+      "days": 145
+     },
+     {
+      "img": "assets/huel-31.jpg",
+      "h": "No time for cooking? Meet Huel Black Edition",
+      "days": 39
+     }
+    ],
+    "rest": 1
    },
    {
     "name": "GLP-1 support",
     "share": 5,
     "count": 3,
-    "ex": "Meet your new GLP-1 companion."
+    "ex": "Meet your new GLP-1 companion.",
+    "exDays": 237,
+    "thumbs": [
+     {
+      "img": "assets/huel-11.jpg",
+      "h": "Meet your new GLP-1 companion.",
+      "days": 237
+     },
+     {
+      "img": "assets/huel-19.jpg",
+      "h": "Support Your Body On GLP-1s",
+      "days": 225
+     }
+    ],
+    "rest": 1
    },
    {
     "name": "Cost per meal",
     "share": 5,
     "count": 3,
-    "ex": "🚫 Stop Choosing Between Easy and Nutritious"
+    "ex": "🚫 Stop Choosing Between Easy and Nutritious",
+    "exDays": 230,
+    "thumbs": [
+     {
+      "img": "assets/huel-17.jpg",
+      "h": "🚫 Stop Choosing Between Easy and Nutritious",
+      "days": 230
+     },
+     {
+      "img": "assets/huel-24.jpg",
+      "h": "The Meal You Don't Need to Audit",
+      "days": 68
+     },
+     {
+      "img": "assets/huel-41.jpg",
+      "h": "Stop Paying Twice for Lunch!",
+      "days": 7
+     }
+    ],
+    "rest": 0
    },
    {
     "name": "Taste and proof",
     "share": 3,
     "count": 2,
-    "ex": "Find out why it's our most popular flavour"
+    "ex": "Find out why it's our most popular flavour",
+    "exDays": 237,
+    "thumbs": [
+     {
+      "img": "assets/huel-12.jpg",
+      "h": "Find out why it's our most popular flavour",
+      "days": 237
+     },
+     {
+      "img": "assets/huel-42.jpg",
+      "h": "The Meal You Don't Need to Audit",
+      "days": 7
+     }
+    ],
+    "rest": 0
    }
   ],
   "nodes": [
@@ -1643,37 +1843,121 @@ const LIBRARY = {
     "name": "Free check offer",
     "share": 67,
     "count": 24,
-    "ex": "Make a date for your diary."
+    "ex": "Make a date for your diary.",
+    "exDays": 181,
+    "thumbs": [
+     {
+      "img": "assets/specsavers-00.jpg",
+      "h": "Make a date for your diary.",
+      "days": 181
+     },
+     {
+      "img": "assets/specsavers-01.jpg",
+      "h": "Book a hearing check today.",
+      "days": 180
+     },
+     {
+      "img": "assets/specsavers-08.jpg",
+      "h": "Book an appointment today.",
+      "days": 68
+     },
+     {
+      "img": "assets/specsavers-09.jpg",
+      "h": "Book an appointment today.",
+      "days": 67
+     }
+    ],
+    "rest": 20
    },
    {
     "name": "Booking prompt",
     "share": 17,
     "count": 6,
-    "ex": "Book your eye test."
+    "ex": "Book your eye test.",
+    "exDays": 124,
+    "thumbs": [
+     {
+      "img": "assets/specsavers-02.jpg",
+      "h": "Book your eye test.",
+      "days": 124
+     },
+     {
+      "img": "assets/specsavers-04.jpg",
+      "h": "Book your eye test.",
+      "days": 124
+     }
+    ],
+    "rest": 4
    },
    {
     "name": "Service range",
     "share": 6,
     "count": 2,
-    "ex": "Book an appointment today."
+    "ex": "Book an appointment today.",
+    "exDays": 124,
+    "thumbs": [
+     {
+      "img": "assets/specsavers-03.jpg",
+      "h": "Book an appointment today.",
+      "days": 124
+     },
+     {
+      "img": "assets/specsavers-06.jpg",
+      "h": "Book your eye test.",
+      "days": 124
+     }
+    ],
+    "rest": 0
    },
    {
     "name": "Style and range",
     "share": 6,
     "count": 2,
-    "ex": "Book your eye test."
+    "ex": "Book your eye test.",
+    "exDays": 124,
+    "thumbs": [
+     {
+      "img": "assets/specsavers-05.jpg",
+      "h": "Book your eye test.",
+      "days": 124
+     },
+     {
+      "img": "assets/specsavers-07.jpg",
+      "h": "Book your eye test.",
+      "days": 97
+     }
+    ],
+    "rest": 0
    },
    {
     "name": "Problem agitation",
     "share": 3,
     "count": 1,
-    "ex": "Book an appointment today."
+    "ex": "Book an appointment today.",
+    "exDays": 64,
+    "thumbs": [
+     {
+      "img": "assets/specsavers-12.jpg",
+      "h": "Book an appointment today.",
+      "days": 64
+     }
+    ],
+    "rest": 0
    },
    {
     "name": "Brand purpose",
     "share": 3,
     "count": 1,
-    "ex": "Over a week in Kolkata, we gave 3,000 locals the"
+    "ex": "Over a week in Kolkata, we gave 3,000 locals the",
+    "exDays": 4,
+    "thumbs": [
+     {
+      "img": "assets/specsavers-14.jpg",
+      "h": "Over a week in Kolkata, we gave 3,000 locals the",
+      "days": 4
+     }
+    ],
+    "rest": 0
    }
   ],
   "nodes": [
@@ -1996,43 +2280,166 @@ const LIBRARY = {
     "name": "Price anchoring",
     "share": 22,
     "count": 12,
-    "ex": "Laya Life. Just in case."
+    "ex": "Laya Life. Just in case.",
+    "exDays": 48,
+    "thumbs": [
+     {
+      "img": "assets/laya-08.jpg",
+      "h": "Laya Life. Just in case.",
+      "days": 48
+     },
+     {
+      "img": "assets/laya-11.jpg",
+      "h": "Mortgage protection. Just in case.",
+      "days": 48
+     },
+     {
+      "img": "assets/laya-17.jpg",
+      "h": "Access private hospitals for less.",
+      "days": 5
+     }
+    ],
+    "rest": 9
    },
    {
     "name": "Peace of mind",
     "share": 20,
     "count": 11,
-    "ex": "Laya Life. Just in case."
+    "ex": "Laya Life. Just in case.",
+    "exDays": 48,
+    "thumbs": [
+     {
+      "img": "assets/laya-05.jpg",
+      "h": "Laya Life. Just in case.",
+      "days": 48
+     },
+     {
+      "img": "assets/laya-06.jpg",
+      "h": "Just in case life takes a turn, take care of the",
+      "days": 48
+     },
+     {
+      "img": "assets/laya-13.jpg",
+      "h": "Laya Life. Just in case.",
+      "days": 48
+     },
+     {
+      "img": "assets/laya-14.jpg",
+      "h": "Mortgage protection. Just in case.",
+      "days": 48
+     }
+    ],
+    "rest": 7
    },
    {
     "name": "Discount",
     "share": 20,
     "count": 11,
-    "ex": "Laya Life. Just in case."
+    "ex": "Laya Life. Just in case.",
+    "exDays": 48,
+    "thumbs": [
+     {
+      "img": "assets/laya-09.jpg",
+      "h": "Laya Life. Just in case.",
+      "days": 48
+     },
+     {
+      "img": "assets/laya-12.jpg",
+      "h": "Mortgage protection. Just in case.",
+      "days": 48
+     },
+     {
+      "img": "assets/laya-16.jpg",
+      "h": "Now families save 10% on more plans",
+      "days": 5
+     }
+    ],
+    "rest": 8
    },
    {
     "name": "Speed to cover",
     "share": 15,
     "count": 8,
-    "ex": "Laya Life. Just in case."
+    "ex": "Laya Life. Just in case.",
+    "exDays": 48,
+    "thumbs": [
+     {
+      "img": "assets/laya-07.jpg",
+      "h": "Laya Life. Just in case.",
+      "days": 48
+     },
+     {
+      "img": "assets/laya-10.jpg",
+      "h": "Mortgage protection. Just in case.",
+      "days": 48
+     }
+    ],
+    "rest": 6
    },
    {
     "name": "Product range",
     "share": 11,
     "count": 6,
-    "ex": "Laya Travel Insurance"
+    "ex": "Laya Travel Insurance",
+    "exDays": 7,
+    "thumbs": [
+     {
+      "img": "assets/laya-15.jpg",
+      "h": "Laya Travel Insurance",
+      "days": 7
+     },
+     {
+      "img": "assets/laya-19.jpg",
+      "h": "Get Quote.",
+      "days": 5
+     }
+    ],
+    "rest": 4
    },
    {
     "name": "Clinic network",
     "share": 9,
     "count": 5,
-    "ex": "Laya Limerick - Spectrum Health"
+    "ex": "Laya Limerick - Spectrum Health",
+    "exDays": 63,
+    "thumbs": [
+     {
+      "img": "assets/laya-00.jpg",
+      "h": "Laya Limerick - Spectrum Health",
+      "days": 63
+     },
+     {
+      "img": "assets/laya-01.jpg",
+      "h": "Laya Health & Wellbeing Clinic, Briarhill",
+      "days": 63
+     },
+     {
+      "img": "assets/laya-02.jpg",
+      "h": "Laya Health & Wellbeing Clinic, Cork",
+      "days": 63
+     },
+     {
+      "img": "assets/laya-03.jpg",
+      "h": "Laya Health & Wellbeing Clinic, Swords",
+      "days": 63
+     }
+    ],
+    "rest": 1
    },
    {
     "name": "Choice and control",
     "share": 2,
     "count": 1,
-    "ex": "Your Healthcare. Your Choice"
+    "ex": "Your Healthcare. Your Choice",
+    "exDays": 5,
+    "thumbs": [
+     {
+      "img": "assets/laya-18.jpg",
+      "h": "Your Healthcare. Your Choice",
+      "days": 5
+     }
+    ],
+    "rest": 0
    }
   ],
   "nodes": [
@@ -2336,37 +2743,55 @@ const LIBRARY = {
     "name": "Price anchoring",
     "share": 31,
     "count": 15,
-    "ex": "$34 versus $126 a year."
+    "ex": "$34 versus $126 a year.",
+    "thumbs": [],
+    "rest": 15,
+    "exDays": 0
    },
    {
     "name": "Social proof",
     "share": 24,
     "count": 11,
-    "ex": "I stopped buying the expensive one."
+    "ex": "I stopped buying the expensive one.",
+    "thumbs": [],
+    "rest": 11,
+    "exDays": 0
    },
    {
     "name": "Simplification",
     "share": 17,
     "count": 8,
-    "ex": "Four products. One tin."
+    "ex": "Four products. One tin.",
+    "thumbs": [],
+    "rest": 8,
+    "exDays": 0
    },
    {
     "name": "Problem agitation",
     "share": 12,
     "count": 6,
-    "ex": "Winter cracks knuckles by week two."
+    "ex": "Winter cracks knuckles by week two.",
+    "thumbs": [],
+    "rest": 6,
+    "exDays": 0
    },
    {
     "name": "Authority",
     "share": 11,
     "count": 5,
-    "ex": "Made by a chemist, not a brand studio."
+    "ex": "Made by a chemist, not a brand studio.",
+    "thumbs": [],
+    "rest": 5,
+    "exDays": 0
    },
    {
     "name": "Urgency",
     "share": 5,
     "count": 2,
-    "ex": "The bundle everyone builds anyway."
+    "ex": "The bundle everyone builds anyway.",
+    "thumbs": [],
+    "rest": 2,
+    "exDays": 0
    }
   ],
   "nodes": [
@@ -2677,7 +3102,12 @@ function renderResults(domain){
       <span class="angle-name">${a.name}</span>
       <span class="angle-share num">${a.share}% · ${a.count} ads</span>
       <span class="angle-bar"><i style="width:${a.share}%"></i></span>
-      <span class="angle-ex">Longest running example: <q>${sub(a.ex,brand).replace(/^"|"$/g,'')}</q></span>
+      <span class="angle-ads">
+        ${a.thumbs && a.thumbs.length ? `<span class="angle-strip">${a.thumbs.map(t=>`
+          <span class="angle-thumb"><img src="${t.img}" alt="" loading="lazy"><span class="tip">${t.h.replace(/"/g,'')} · ${t.days}d</span></span>`).join('')}</span>` : ''}
+        ${a.rest > 0 ? `<span class="angle-rest">+${a.rest} more</span>` : ''}
+        <span class="angle-ex">Longest run: <q>${sub(a.ex,brand).replace(/^"|"$/g,'')}</q>${a.exDays?` · ${a.exDays} days`:''}</span>
+      </span>
     </div>`).join('');
 
   const map = $('#map');

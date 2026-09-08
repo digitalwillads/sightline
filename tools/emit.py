@@ -4,6 +4,7 @@ ASSETS=os.path.expanduser('~/Desktop/projects/sightline-mockup/assets')
 
 PLAT={'facebook':'FB','instagram':'IG','audience_network':'Audience Network',
       'messenger':'Messenger','threads':'Threads'}
+UNITS=json.load(open('ad_units.json'))
 BRANDS=[('ds_huel.json','huel.com','Huel','huel'),
         ('ds_specsavers.json','specsavers.ie','Specsavers Ireland','specsavers'),
         ('ds_layahealthcare.json','layahealthcare.ie','Laya Healthcare','laya')]
@@ -14,6 +15,13 @@ def human(n):
     return str(n)
 def datefmt(iso):
     d=datetime.date.fromisoformat(iso); return d.strftime('%-d %b %Y')
+def host(c, fallback):
+    # Meta renders the link caption as a bare host. The API sometimes hands
+    # back a full URL, so normalise before display.
+    c=re.sub(r'^https?://','',(c or '').strip()).split('/')[0]
+    c=re.sub(r'^www\.','',c)
+    return (c or fallback).lower()
+
 def trim(t,n):
     t=re.sub(r'\s+',' ',t).strip()
     return t if len(t)<=n else t[:n].rsplit(' ',1)[0]+'…'
@@ -51,15 +59,23 @@ for f,dom,page,slug in BRANDS:
             rest=c[len(head):].lstrip(' .!?—-')
             if len(rest)>60: c=rest
         return trim(c,210)
+    units=UNITS.get(slug,[])
     cards=[]
     for n,r in enumerate(d['ads'][:12]):
         h=headline(r)
+        u=units[n] if n<len(units) else {}
+        # Meta stacks caption, headline, description, button. When the scraped
+        # description is just the headline again, the ad had no description.
+        title=trim(r['h'],62)          # the link title Meta actually renders
+        desc=u.get('desc','')
+        if desc.strip().lower() in (title.strip().lower(), h.strip().lower().rstrip('…')): desc=''
         img=f'assets/{slug}-{n:02d}.jpg'
         vid=f'assets/{slug}-{n:02d}.mp4'
         has_img=os.path.exists(os.path.join(ASSETS,f'{slug}-{n:02d}.jpg'))
         has_vid=os.path.exists(os.path.join(ASSETS,f'{slug}-{n:02d}.mp4'))
         cards.append(dict(h=h, copy=body(r,h), dom=r['dom'],
                           img=img if has_img else '', video=vid if has_vid else '',
+                          cta=u.get('cta',''), desc=trim(desc,60), cap=host(r['dom'] or u.get('cap'), dom), title=title,
                           days=r['days'], first=datefmt(r['first']), variants=r['variants'],
                           angle=r['angle'], plats=' · '.join(PLAT.get(p,p) for p in r['plats'][:3]),
                           reach=human(r['reach'])))
@@ -69,6 +85,7 @@ for f,dom,page,slug in BRANDS:
               days=d['ads'][i]['days'], why=w) for i,w in zip(L['winners'],L['why'])]
     out[dom]=dict(
         brand=page, page=page, domain=dom, real=True,
+        avatar=f'assets/{slug}-avatar.jpg',
         follow=f"Page {page}", since=f"Oldest live ad {datefmt(d['ads'][-1]['first'] if False else min(r['first'] for r in d['ads']))}",
         total=d['live'],
         stats=[

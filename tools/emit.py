@@ -52,12 +52,12 @@ for f,dom,page,slug in BRANDS:
     def body(r,h):
         # If the headline was lifted from the copy, don't print that line twice.
         c=re.sub(r'\s+',' ',r['copy']).strip()
-        if h.endswith('…'): return trim(c,210)   # headline was cut; keep the copy whole
+        if h.endswith('…'): return c            # headline was cut; keep the copy whole
         head=h.strip()
         if head and c.lower().startswith(head.lower()[:28]):
             rest=c[len(head):].lstrip(' .!?—-')
             if len(rest)>60: c=rest
-        return trim(c,210)
+        return c
     units=UNITS.get(slug,[])
 
     def card(n):

@@ -422,7 +422,17 @@ img{max-width:100%;height:auto;display:block}
 .fb-text{
   margin:0 .85rem .7rem;font-size:.875rem;line-height:1.4;color:var(--charcoal);
   display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
+  white-space:pre-line;
 }
+.fb-text.is-open{display:block;-webkit-line-clamp:unset;overflow:visible}
+/* shown only where the body actually overflows its three lines */
+.fb-more{
+  display:block;align-self:flex-start;text-align:left;
+  margin:-.35rem .85rem .75rem;padding:0;line-height:1.3;
+  font-size:.8125rem;font-weight:600;color:var(--stone);
+  transition:color .3s var(--ease-out);
+}
+.fb-more:hover{color:var(--black)}
 .fb-media{
   position:relative;overflow:hidden;background:var(--charcoal);
   display:grid;place-items:center;aspect-ratio:1/1;
@@ -1113,7 +1123,7 @@ const LIBRARY = {
   "ads": [
    {
     "h": "The ultimate high protein meal",
-    "copy": "Don't change your life, just change lunch 📈 Say hello to our Hot & Savoury Pots. Just add water for a delicious, nutritious* lunch. Whether you're craving Katsu Curry Noodles or Pasta Bolognese– we've got you…",
+    "copy": "Don't change your life, just change lunch 📈 Say hello to our Hot & Savoury Pots. Just add water for a delicious, nutritious* lunch. Whether you're craving Katsu Curry Noodles or Pasta Bolognese– we've got you covered. 🥦 100% nutritionally complete** 💚 26 essential vitamins and minerals 📈 Each pot packs 22g of protein *Contains vitamin B12 and iron to reduce tiredness and fatigue. **Huel meals and bars provide the right amount of protein, essential fats, carbohydrates, fibre, vitamins & minerals as part of a balanced diet'.",
     "dom": "huel.com",
     "img": "assets/huel-00.jpg",
     "video": "assets/huel-00.mp4",
@@ -1130,7 +1140,7 @@ const LIBRARY = {
    },
    {
     "h": "Making better food choices doesn’t have to be a massive…",
-    "copy": "Making better food choices doesn’t have to be a massive lifestyle change. Huel Meal Packs offer up to 25g of protein, 26 vitamins and minerals, and just 400 calories in a hot, satisfying meal. It’s an easy win…",
+    "copy": "Making better food choices doesn’t have to be a massive lifestyle change. Huel Meal Packs offer up to 25g of protein, 26 vitamins and minerals, and just 400 calories in a hot, satisfying meal. It’s an easy win that helps you eat well, feel good, and keep going. 💪Up to 25g protein 🍽️ Hot, complete nutrition meals* 🕒 Simple, sustainable nutrition *Huel meals and bars provide the right amount of protein, essential fats and carbohydrates, fibre, vitamins and minerals as part of a balanced diet",
     "dom": "huel.com",
     "img": "assets/huel-01.jpg",
     "video": "",
@@ -1147,7 +1157,7 @@ const LIBRARY = {
    },
    {
     "h": "Too tired to chef it up?",
-    "copy": "👩‍🍳 Our Hot & Savoury Meal Packs are ready in minutes. Just add hot water to unleash the irresistible flavour––whether you're feeling Thai Green Curry or Mexican Chilli. ⏰ Perfect if you’re crunched for time 🍝…",
+    "copy": "👩‍🍳 Our Hot & Savoury Meal Packs are ready in minutes. Just add hot water to unleash the irresistible flavour––whether you're feeling Thai Green Curry or Mexican Chilli. ⏰ Perfect if you’re crunched for time 🍝 Choose from 7 delicious meals 👩‍🍳 No kitchen required 📈 Each packs contains up to 25g of protein",
     "dom": "huel.com",
     "img": "assets/huel-02.jpg",
     "video": "",
@@ -1164,7 +1174,7 @@ const LIBRARY = {
    },
    {
     "h": "Don't change your life, just change lunch.",
-    "copy": "Our Hot & Savoury Meal Packs are ready in minutes. Just add hot water to unleash the irresistible flavour––whether you're feeling Thai Green Curry or Cajun Pasta. ⏰ Perfect if you’re crunched for time 🍝 Choose…",
+    "copy": "Our Hot & Savoury Meal Packs are ready in minutes. Just add hot water to unleash the irresistible flavour––whether you're feeling Thai Green Curry or Cajun Pasta. ⏰ Perfect if you’re crunched for time 🍝 Choose from 7 delicious meals 👩‍🍳 No kitchen required 📈 Each packs contains up to 25g of protein",
     "dom": "huel.com",
     "img": "assets/huel-03.jpg",
     "video": "",
@@ -1181,7 +1191,7 @@ const LIBRARY = {
    },
    {
     "h": "Upgrade Your Desk Lunch",
-    "copy": "If you’re hungry again by 3pm, lunch didn’t do its job. Huel is designed to last: 💪 25g protein per meal to help keep you full* 🔋 Complete nutrition**, not snack food 💷 Less than £3 per meal Fix lunch. The…",
+    "copy": "If you’re hungry again by 3pm, lunch didn’t do its job. Huel is designed to last: 💪 25g protein per meal to help keep you full* 🔋 Complete nutrition**, not snack food 💷 Less than £3 per meal Fix lunch. The afternoon follows.",
     "dom": "huel.com",
     "img": "assets/huel-04.jpg",
     "video": "",
@@ -1198,7 +1208,7 @@ const LIBRARY = {
    },
    {
     "h": "Day 1 Or One Day. You Decide.",
-    "copy": "Most diets fail because they make hunger your enemy. Rules, restrictions, and “just try harder” don’t work long-term. Huel does it differently: 💪 High protein + fiber to keep you full ✅ No food groups to…",
+    "copy": "Most diets fail because they make hunger your enemy. Rules, restrictions, and “just try harder” don’t work long-term. Huel does it differently: 💪 High protein + fiber to keep you full ✅ No food groups to eliminate 🔁 A meal you can repeat every day No rules. Just food that actually works.",
     "dom": "huel.com",
     "img": "assets/huel-05.jpg",
     "video": "",
@@ -1215,7 +1225,7 @@ const LIBRARY = {
    },
    {
     "h": "So much more than just a shake",
-    "copy": "Who said protein goals were hard to hit? 🙅 Start fuelling up with Huel Black Edition and feel the difference today. Packed with protein and nutrients, so you’ll never want to skip a meal again. 🍽 40g protein…",
+    "copy": "Who said protein goals were hard to hit? 🙅 Start fuelling up with Huel Black Edition and feel the difference today. Packed with protein and nutrients, so you’ll never want to skip a meal again. 🍽 40g protein to fuel your day 💪 All the nutrients you need in one* ✅ Formulated by nutritionists *Contains vitamin C to support the immune system",
     "dom": "huel.com",
     "img": "assets/huel-06.jpg",
     "video": "",
@@ -1232,7 +1242,7 @@ const LIBRARY = {
    },
    {
     "h": "✂️ Your Cut Killed Your Gains. Now What?",
-    "copy": "📉 Cutting calories doesn’t mean cutting protein. If protein drops too low, strength follows. Black Edition delivers: 💪 40g protein in 400 calories 🔥 Fiber to help manage hunger ✅ Complete nutrition for hard…",
+    "copy": "📉 Cutting calories doesn’t mean cutting protein. If protein drops too low, strength follows. Black Edition delivers: 💪 40g protein in 400 calories 🔥 Fiber to help manage hunger ✅ Complete nutrition for hard cuts Lose fat. Keep muscle.",
     "dom": "huel.com",
     "img": "assets/huel-07.jpg",
     "video": "",
@@ -1249,7 +1259,7 @@ const LIBRARY = {
    },
    {
     "h": "This Is A Meal. Not A Protein Shake.",
-    "copy": "🏋️ You already put in the work. Protein shouldn’t feel like another chore. Huel gives you: 💪 40g protein per meal ✅ Real staying power — not just a number 🍫 8 flavors you actually want to drink Hit your…",
+    "copy": "🏋️ You already put in the work. Protein shouldn’t feel like another chore. Huel gives you: 💪 40g protein per meal ✅ Real staying power — not just a number 🍫 8 flavors you actually want to drink Hit your protein goal.Save your energy for the gym.",
     "dom": "huel.com",
     "img": "assets/huel-08.jpg",
     "video": "",
@@ -1283,7 +1293,7 @@ const LIBRARY = {
    },
    {
     "h": "You Do the Reps. We Do the Protein.",
-    "copy": "Hitting protein shouldn’t mean forcing down the same bland chicken every day. Huel delivers: 🍫 35g protein in flavors you crave 💪 A complete meal — not just a shake 💸 Under €4 per serving You train hard. We’ll…",
+    "copy": "Hitting protein shouldn’t mean forcing down the same bland chicken every day. Huel delivers: 🍫 35g protein in flavors you crave 💪 A complete meal — not just a shake 💸 Under €4 per serving You train hard. We’ll handle the protein",
     "dom": "huel.com",
     "img": "assets/huel-10.jpg",
     "video": "",
@@ -1300,7 +1310,7 @@ const LIBRARY = {
    },
    {
     "h": "Meet your new GLP-1 companion.",
-    "copy": "When you’re on a GLP-1, hunger can vanish and so can your protein and fibre intake. Huel Black Edition Powder steps in with 400 calories, 40g protein, 6g fibre, and 26+ essential nutrients. It helps you stay…",
+    "copy": "When you’re on a GLP-1, hunger can vanish and so can your protein and fibre intake. Huel Black Edition Powder steps in with 400 calories, 40g protein, 6g fibre, and 26+ essential nutrients. It helps you stay nourished and supported, even on days when eating isn’t top of mind. 💪40g protein, 6g fibre, 400 calories 🥣 Easy portion control 🧑‍⚕️Designed by registered dieticians ♥️Trusted by over 3 million customers",
     "dom": "huel.com",
     "img": "assets/huel-11.jpg",
     "video": "",
@@ -1326,7 +1336,7 @@ const LIBRARY = {
     "ads": [
      {
       "h": "Too tired to chef it up?",
-      "copy": "👩‍🍳 Our Hot & Savoury Meal Packs are ready in minutes. Just add hot water to unleash the irresistible flavour––whether you're feeling Thai Green Curry or Mexican Chilli. ⏰ Perfect if you’re crunched for time 🍝…",
+      "copy": "👩‍🍳 Our Hot & Savoury Meal Packs are ready in minutes. Just add hot water to unleash the irresistible flavour––whether you're feeling Thai Green Curry or Mexican Chilli. ⏰ Perfect if you’re crunched for time 🍝 Choose from 7 delicious meals 👩‍🍳 No kitchen required 📈 Each packs contains up to 25g of protein",
       "dom": "huel.com",
       "img": "assets/huel-02.jpg",
       "video": "",
@@ -1360,7 +1370,7 @@ const LIBRARY = {
      },
      {
       "h": "No time for lunch? No problem.",
-      "copy": "\"The perfect meal doesn't exis... oh wait.\" 🌿Simple way to eat more plant based 🥚Know you're getting enough protein in your diet 💪Reduce tiredness and fatigue with 26 essential vitamins & minerals like iron…",
+      "copy": "\"The perfect meal doesn't exis... oh wait.\" 🌿Simple way to eat more plant based 🥚Know you're getting enough protein in your diet 💪Reduce tiredness and fatigue with 26 essential vitamins & minerals like iron 🥣Easy portion control Get 17 meals for as little as 2.29 € per meal, plus a FREE T-shirt + shaker if you're a new customer!",
       "dom": "huel.com",
       "img": "assets/huel-14.jpg",
       "video": "",
@@ -1377,7 +1387,7 @@ const LIBRARY = {
      },
      {
       "h": "For Your Inconvenient Meals",
-      "copy": "Huel was never meant to replace real food. It’s for the meals that happen away from the kitchen — when cooking isn’t an option and the alternative is usually junk. That’s where functional food makes sense.…",
+      "copy": "Huel was never meant to replace real food. It’s for the meals that happen away from the kitchen — when cooking isn’t an option and the alternative is usually junk. That’s where functional food makes sense. Huel gives you: ✔️ 40g of protein to help keep you full ✔️ High fibre ✔️ Complete nutrition for when a proper meal isn’t available Real meals stay real. Inconvenient meals get smarter.",
       "dom": "huel.com",
       "img": "assets/huel-16.jpg",
       "video": "",
@@ -1411,7 +1421,7 @@ const LIBRARY = {
      },
      {
       "h": "Quick, balanced meals for busy lives",
-      "copy": "Your day is already busy. Food shouldn’t slow it down. Most meals take more time than they’re worth — planning, prep, queues, cleanup. Huel gives you a complete meal: ✔ Ready in 60 seconds ✔ Less than €2.50…",
+      "copy": "Your day is already busy. Food shouldn’t slow it down. Most meals take more time than they’re worth — planning, prep, queues, cleanup. Huel gives you a complete meal: ✔ Ready in 60 seconds ✔ Less than €2.50 per meal ✔ Nutritionally complete, no effort required One less decision. One less thing stealing your time.",
       "dom": "eu.huel.com",
       "img": "assets/huel-23.jpg",
       "video": "",
@@ -1428,7 +1438,7 @@ const LIBRARY = {
      },
      {
       "h": "40g of protein. Ready in seconds.",
-      "copy": "The hardest part of eating better isn’t the food. It’s doing it every day. Huel removes the friction: ⚡ No prep ✔ No planning ✅ 40g protein to keep you full for hours Same breakfast. Every morning. Done. *Huel…",
+      "copy": "The hardest part of eating better isn’t the food. It’s doing it every day. Huel removes the friction: ⚡ No prep ✔ No planning ✅ 40g protein to keep you full for hours Same breakfast. Every morning. Done. *Huel meals and bars provide the right amount of protein, essential fats, fibre, vitamins & minerals as part of a balanced diet",
       "dom": "eu.huel.com",
       "img": "assets/huel-30.jpg",
       "video": "",
@@ -1445,7 +1455,7 @@ const LIBRARY = {
      },
      {
       "h": "The Meal You Don't Need to Audit",
-      "copy": "Your day is already busy. Food shouldn’t slow it down. Most meals take more time than they’re worth — planning, prep, queues, cleanup. Huel gives you a complete meal: ✔ Ready in 60 seconds ✔ Less than €2.50…",
+      "copy": "Your day is already busy. Food shouldn’t slow it down. Most meals take more time than they’re worth — planning, prep, queues, cleanup. Huel gives you a complete meal: ✔ Ready in 60 seconds ✔ Less than €2.50 per meal* ✔ Nutritionally complete, no effort required One less decision. One less thing stealing your time. *with a subscription",
       "dom": "eu.huel.com",
       "img": "assets/huel-34.jpg",
       "video": "",
@@ -1488,7 +1498,7 @@ const LIBRARY = {
     "ads": [
      {
       "h": "Who said protein goals were hard to hit?",
-      "copy": "🙅 Start fuelling up with Huel Black Edition and feel the difference today. Packed with protein and nutrients, so you’ll never want to skip a meal again. 🍽 40g protein to fuel your day 💪 All the nutrients you…",
+      "copy": "🙅 Start fuelling up with Huel Black Edition and feel the difference today. Packed with protein and nutrients, so you’ll never want to skip a meal again. 🍽 40g protein to fuel your day 💪 All the nutrients you need in one* ✅ Formulated by nutritionists *Contains vitamin C to support the immune system",
       "dom": "huel.com",
       "img": "assets/huel-06.jpg",
       "video": "",
@@ -1522,7 +1532,7 @@ const LIBRARY = {
      },
      {
       "h": "🏋️ You already put in the work.",
-      "copy": "Protein shouldn’t feel like another chore. Huel gives you: 💪 40g protein per meal ✅ Real staying power — not just a number 🍫 8 flavors you actually want to drink Hit your protein goal.Save your energy for the…",
+      "copy": "Protein shouldn’t feel like another chore. Huel gives you: 💪 40g protein per meal ✅ Real staying power — not just a number 🍫 8 flavors you actually want to drink Hit your protein goal.Save your energy for the gym.",
       "dom": "huel.com",
       "img": "assets/huel-08.jpg",
       "video": "",
@@ -1539,7 +1549,7 @@ const LIBRARY = {
      },
      {
       "h": "Hitting protein shouldn’t mean forcing down the same bland…",
-      "copy": "Hitting protein shouldn’t mean forcing down the same bland chicken every day. Huel delivers: 🍫 35g protein in flavors you crave 💪 A complete meal — not just a shake 💸 Under €4 per serving You train hard. We’ll…",
+      "copy": "Hitting protein shouldn’t mean forcing down the same bland chicken every day. Huel delivers: 🍫 35g protein in flavors you crave 💪 A complete meal — not just a shake 💸 Under €4 per serving You train hard. We’ll handle the protein",
       "dom": "huel.com",
       "img": "assets/huel-10.jpg",
       "video": "",
@@ -1573,7 +1583,7 @@ const LIBRARY = {
      },
      {
       "h": "💪 Protein Without the Prep",
-      "copy": "Not getting enough protein? 😩 Big changes start small. Give your body what it needs to win with Huel Black Edition. Our most protein-packed meal yet. 🥣 Makes portion control easier than ever 🍽 40g protein to…",
+      "copy": "Not getting enough protein? 😩 Big changes start small. Give your body what it needs to win with Huel Black Edition. Our most protein-packed meal yet. 🥣 Makes portion control easier than ever 🍽 40g protein to fuel your day 💪 All the nutrients you need in one",
       "dom": "huel.com",
       "img": "assets/huel-20.jpg",
       "video": "",
@@ -1590,7 +1600,7 @@ const LIBRARY = {
      },
      {
       "h": "Not getting enough protein?",
-      "copy": "😩 Big changes start small. Give your body what it needs to win with Huel Black Edition. Our most protein-packed meal yet. 🥣 Makes portion control easier than ever 🍽 40g protein to fuel your day 💪 All the…",
+      "copy": "😩 Big changes start small. Give your body what it needs to win with Huel Black Edition. Our most protein-packed meal yet. 🥣 Makes portion control easier than ever 🍽 40g protein to fuel your day 💪 All the nutrients you need in one",
       "dom": "eu.huel.com",
       "img": "assets/huel-35.jpg",
       "video": "",
@@ -1607,7 +1617,7 @@ const LIBRARY = {
      },
      {
       "h": "📈 The Easiest 35g Protein You'll Ever Drink",
-      "copy": "🏋️ You already put in the work. Protein shouldn’t feel like another chore. Huel gives you: 💪 35g protein per meal ✅ Real staying power — not just a number 🚶‍♂️ Perfect for on-the-go Hit your protein goal. Save…",
+      "copy": "🏋️ You already put in the work. Protein shouldn’t feel like another chore. Huel gives you: 💪 35g protein per meal ✅ Real staying power — not just a number 🚶‍♂️ Perfect for on-the-go Hit your protein goal. Save your energy for the gym.",
       "dom": "huel.com",
       "img": "assets/huel-37.jpg",
       "video": "",
@@ -1633,7 +1643,7 @@ const LIBRARY = {
     "ads": [
      {
       "h": "Don't change your life, just change lunch 📈 Say hello to our…",
-      "copy": "Don't change your life, just change lunch 📈 Say hello to our Hot & Savoury Pots. Just add water for a delicious, nutritious* lunch. Whether you're craving Katsu Curry Noodles or Pasta Bolognese– we've got you…",
+      "copy": "Don't change your life, just change lunch 📈 Say hello to our Hot & Savoury Pots. Just add water for a delicious, nutritious* lunch. Whether you're craving Katsu Curry Noodles or Pasta Bolognese– we've got you covered. 🥦 100% nutritionally complete** 💚 26 essential vitamins and minerals 📈 Each pot packs 22g of protein *Contains vitamin B12 and iron to reduce tiredness and fatigue. **Huel meals and bars provide the right amount of protein, essential fats, carbohydrates, fibre, vitamins & minerals as part of a balanced diet'.",
       "dom": "huel.com",
       "img": "assets/huel-00.jpg",
       "video": "assets/huel-00.mp4",
@@ -1650,7 +1660,7 @@ const LIBRARY = {
      },
      {
       "h": "Making better food choices doesn’t have to be a massive…",
-      "copy": "Making better food choices doesn’t have to be a massive lifestyle change. Huel Meal Packs offer up to 25g of protein, 26 vitamins and minerals, and just 400 calories in a hot, satisfying meal. It’s an easy win…",
+      "copy": "Making better food choices doesn’t have to be a massive lifestyle change. Huel Meal Packs offer up to 25g of protein, 26 vitamins and minerals, and just 400 calories in a hot, satisfying meal. It’s an easy win that helps you eat well, feel good, and keep going. 💪Up to 25g protein 🍽️ Hot, complete nutrition meals* 🕒 Simple, sustainable nutrition *Huel meals and bars provide the right amount of protein, essential fats and carbohydrates, fibre, vitamins and minerals as part of a balanced diet",
       "dom": "huel.com",
       "img": "assets/huel-01.jpg",
       "video": "",
@@ -1667,7 +1677,7 @@ const LIBRARY = {
      },
      {
       "h": "Don't change your life, just change lunch.",
-      "copy": "Our Hot & Savoury Meal Packs are ready in minutes. Just add hot water to unleash the irresistible flavour––whether you're feeling Thai Green Curry or Cajun Pasta. ⏰ Perfect if you’re crunched for time 🍝 Choose…",
+      "copy": "Our Hot & Savoury Meal Packs are ready in minutes. Just add hot water to unleash the irresistible flavour––whether you're feeling Thai Green Curry or Cajun Pasta. ⏰ Perfect if you’re crunched for time 🍝 Choose from 7 delicious meals 👩‍🍳 No kitchen required 📈 Each packs contains up to 25g of protein",
       "dom": "huel.com",
       "img": "assets/huel-03.jpg",
       "video": "",
@@ -1684,7 +1694,7 @@ const LIBRARY = {
      },
      {
       "h": "For Your Inconvenient Meals.",
-      "copy": "Waiting for Monday hasn’t worked so far. Not because you don’t care — but because starting feels like too much. Huel makes today easier: ⚡ Ready in 60 seconds 💪 40g protein to keep you full for hours ✅ A…",
+      "copy": "Waiting for Monday hasn’t worked so far. Not because you don’t care — but because starting feels like too much. Huel makes today easier: ⚡ Ready in 60 seconds 💪 40g protein to keep you full for hours ✅ A complete meal* with no planning You don’t need a fresh start. Just a simple one. *Huel meals and bars provide the right amount of protein, essential fats, fibre, vitamins & minerals as part of a balanced diet",
       "dom": "eu.huel.com",
       "img": "assets/huel-26.jpg",
       "video": "",
@@ -1701,7 +1711,7 @@ const LIBRARY = {
      },
      {
       "h": "One Change That Sticks",
-      "copy": "If you feel the need to check every label, food is taking up too much headspace. Huel is the one meal you don’t need to audit. ✅ Complete nutrition*, already balanced 💪 25g protein and high fibre ⚡ Ready…",
+      "copy": "If you feel the need to check every label, food is taking up too much headspace. Huel is the one meal you don’t need to audit. ✅ Complete nutrition*, already balanced 💪 25g protein and high fibre ⚡ Ready whenever you are Make one meal simple — and move on. *Huel meals and bars provide the right amount of protein, essential fats, fibre, vitamins & minerals as part of a balanced diet",
       "dom": "huel.com",
       "img": "assets/huel-29.jpg",
       "video": "",
@@ -1718,7 +1728,7 @@ const LIBRARY = {
      },
      {
       "h": "🚫📅 STOP waiting for the \"perfect time\" to start eating…",
-      "copy": "🚫📅 STOP waiting for the \"perfect time\" to start eating healthy There's no perfect time. There's just today. Black Edition is the easiest first step: ✅ One meal 💪 40g protein ⚡ Complete nutrition in 60 seconds…",
+      "copy": "🚫📅 STOP waiting for the \"perfect time\" to start eating healthy There's no perfect time. There's just today. Black Edition is the easiest first step: ✅ One meal 💪 40g protein ⚡ Complete nutrition in 60 seconds No drastic changes. Just something you can actually keep doing.",
       "dom": "eu.huel.com",
       "img": "assets/huel-33.jpg",
       "video": "",
@@ -1735,7 +1745,7 @@ const LIBRARY = {
      },
      {
       "h": "Don't change your life, your breakfast or lunch is enough.",
-      "copy": "Huel Black Edition gives you everything you need from a meal, with easy portion control to support your lifestyle goals. 💪 40g protein, which helps keep you fuller for longer + Up to 10g fiber for smooth…",
+      "copy": "Huel Black Edition gives you everything you need from a meal, with easy portion control to support your lifestyle goals. 💪 40g protein, which helps keep you fuller for longer + Up to 10g fiber for smooth digestion ⏰ Ready in seconds 💸17 meals for only 2,29 € per meal* *with a subscription",
       "dom": "eu.huel.com",
       "img": "assets/huel-36.jpg",
       "video": "",
@@ -1752,7 +1762,7 @@ const LIBRARY = {
      },
      {
       "h": "No time for cooking? Meet Huel Black Edition",
-      "copy": "Don't change your life, your breakfast or lunch is enough. Huel Black Edition gives you everything you need from a meal, with easy portion control to support your lifestyle goals. 💪 40g protein, which helps…",
+      "copy": "Don't change your life, your breakfast or lunch is enough. Huel Black Edition gives you everything you need from a meal, with easy portion control to support your lifestyle goals. 💪 40g protein, which helps keep you fuller for longer + Up to 10g fibre for smooth digestion ⏰ Ready in seconds 💸17 meals for only 2,29 € per meal* *with a subscription",
       "dom": "eu.huel.com",
       "img": "assets/huel-39.jpg",
       "video": "",
@@ -1769,7 +1779,7 @@ const LIBRARY = {
      },
      {
       "h": "🚫📅 STOP waiting for the \"perfect time\" to start eating…",
-      "copy": "🚫📅 STOP waiting for the \"perfect time\" to start eating healthy There's no perfect time. There's just today. Black Edition is the easiest first step: ✅ One meal 💪 40g protein ⚡ Complete nutrition in 60 seconds…",
+      "copy": "🚫📅 STOP waiting for the \"perfect time\" to start eating healthy There's no perfect time. There's just today. Black Edition is the easiest first step: ✅ One meal 💪 40g protein ⚡ Complete nutrition in 60 seconds No drastic changes. Just something you can actually keep doing.",
       "dom": "eu.huel.com",
       "img": "assets/huel-40.jpg",
       "video": "",
@@ -1786,7 +1796,7 @@ const LIBRARY = {
      },
      {
       "h": "Breakfast Sorted",
-      "copy": "📅 STOP waiting for the \"perfect time\" to start eating healthy. There's no perfect time. There's just today. Huel is the easiest first step: one meal, 25g protein, complete nutrition*. Start simple. Stay…",
+      "copy": "📅 STOP waiting for the \"perfect time\" to start eating healthy. There's no perfect time. There's just today. Huel is the easiest first step: one meal, 25g protein, complete nutrition*. Start simple. Stay consistent. ✅ No drastic changes needed 💷 From €3,75 per meal** ⚡ Build the habit starting today *Huel meals and bars provide the right amount of protein, essential fats, fibre, vitamins & minerals as part of a balanced diet **with a subscription",
       "dom": "huel.com",
       "img": "assets/huel-43.jpg",
       "video": "",
@@ -1812,7 +1822,7 @@ const LIBRARY = {
     "ads": [
      {
       "h": "230 Calories That Work Harder",
-      "copy": "Calorie control shouldn’t feel miserable. The hardest part isn’t knowing what to do - it’s sticking to it. Huel makes it easier: 💪 25g protein per meal to help keep you full ✅ Complete nutrition* 🍜 Less than…",
+      "copy": "Calorie control shouldn’t feel miserable. The hardest part isn’t knowing what to do - it’s sticking to it. Huel makes it easier: 💪 25g protein per meal to help keep you full ✅ Complete nutrition* 🍜 Less than 230 calories per meal to fit calorie-controlled diets Track less. Stress less. Stay consistent. *Huel meals and bars provide the right amount of protein, essential fats, fibre, vitamins & minerals as part of a balanced diet",
       "dom": "eu.huel.com",
       "img": "assets/huel-25.jpg",
       "video": "",
@@ -1829,7 +1839,7 @@ const LIBRARY = {
      },
      {
       "h": "190 Calories That Work Harder",
-      "copy": "Calorie control shouldn’t feel miserable. The hardest part isn’t knowing what to do - it’s sticking to it. Huel makes it easier: 💪 25g protein per meal to help keep you full ✅ Complete nutrition* 🥗 A meal that…",
+      "copy": "Calorie control shouldn’t feel miserable. The hardest part isn’t knowing what to do - it’s sticking to it. Huel makes it easier: 💪 25g protein per meal to help keep you full ✅ Complete nutrition* 🥗 A meal that fits calorie-controlled diets Track less. Stress less. Stay consistent. *Huel meals and bars provide the right amount of protein, essential fats, fibre, vitamins & minerals as part of a balanced diet",
       "dom": "huel.com",
       "img": "assets/huel-27.jpg",
       "video": "",
@@ -1846,7 +1856,7 @@ const LIBRARY = {
      },
      {
       "h": "Calorie Control, Without The Misery",
-      "copy": "Calorie control shouldn’t feel miserable. The hardest part isn’t knowing what to do - it’s sticking to it. Huel makes it easier: 💪 25g protein per meal to help keep you full ✅ Complete nutrition* 🥗 A meal that…",
+      "copy": "Calorie control shouldn’t feel miserable. The hardest part isn’t knowing what to do - it’s sticking to it. Huel makes it easier: 💪 25g protein per meal to help keep you full ✅ Complete nutrition* 🥗 A meal that fits calorie-controlled diets Track less. Stress less. Stay consistent. *Huel meals and bars provide the right amount of protein, essential fats, fibre, vitamins & minerals as part of a balanced diet",
       "dom": "huel.com",
       "img": "assets/huel-28.jpg",
       "video": "",
@@ -1889,7 +1899,7 @@ const LIBRARY = {
      },
      {
       "h": "Most diets fail because they make hunger your enemy.",
-      "copy": "Rules, restrictions, and “just try harder” don’t work long-term. Huel does it differently: 💪 High protein + fiber to keep you full ✅ No food groups to eliminate 🔁 A meal you can repeat every day No rules. Just…",
+      "copy": "Rules, restrictions, and “just try harder” don’t work long-term. Huel does it differently: 💪 High protein + fiber to keep you full ✅ No food groups to eliminate 🔁 A meal you can repeat every day No rules. Just food that actually works.",
       "dom": "huel.com",
       "img": "assets/huel-05.jpg",
       "video": "",
@@ -1906,7 +1916,7 @@ const LIBRARY = {
      },
      {
       "h": "Upgrade Your Desk Lunch 📈",
-      "copy": "Office lunch lacking? 🤦 Say goodbye to soggy sandwiches and hello to Huel Black Edition. Packed with 40g of protein per serving, it’s the power-up your lunch break’s been waiting for. 📈Helps you hit your…",
+      "copy": "Office lunch lacking? 🤦 Say goodbye to soggy sandwiches and hello to Huel Black Edition. Packed with 40g of protein per serving, it’s the power-up your lunch break’s been waiting for. 📈Helps you hit your protein goals ⏰Ready in 60 secs, freeing up your lunch hour 💪 All the nutrients you need in one",
       "dom": "huel.com",
       "img": "assets/huel-18.jpg",
       "video": "",
@@ -1923,7 +1933,7 @@ const LIBRARY = {
      },
      {
       "h": "Stop Snacking at 3pm",
-      "copy": "Convenient meals usually cut corners. That’s the compromise most people make. Huel refuses to. In one meal, you get: ✔ 25g protein ✔ High fibre ✔ All essential vitamins & minerals No trade-offs. Just proper…",
+      "copy": "Convenient meals usually cut corners. That’s the compromise most people make. Huel refuses to. In one meal, you get: ✔ 25g protein ✔ High fibre ✔ All essential vitamins & minerals No trade-offs. Just proper nutrition that fits real life.",
       "dom": "huel.com",
       "img": "assets/huel-32.jpg",
       "video": "",
@@ -1949,7 +1959,7 @@ const LIBRARY = {
     "ads": [
      {
       "h": "Your protein shake is failing you.",
-      "copy": "Most shakes only solve the protein piece. Huel Black Edition goes further with fiber, vitamins, and minerals your body actually needs. One simple shake delivers complete nutrition that keeps you fueled,…",
+      "copy": "Most shakes only solve the protein piece. Huel Black Edition goes further with fiber, vitamins, and minerals your body actually needs. One simple shake delivers complete nutrition that keeps you fueled, satisfied, and ready to go.",
       "dom": "huel.com",
       "img": "assets/huel-13.jpg",
       "video": "",
@@ -1983,7 +1993,7 @@ const LIBRARY = {
      },
      {
       "h": "Convenient meals usually cut corners.",
-      "copy": "That’s the compromise most people make. Huel refuses to. In one 60-second meal, you get: ✔ 40g protein to keep you full for hours ✔ High fibre ✔ All essential vitamins & minerals No trade-offs. Just proper…",
+      "copy": "That’s the compromise most people make. Huel refuses to. In one 60-second meal, you get: ✔ 40g protein to keep you full for hours ✔ High fibre ✔ All essential vitamins & minerals No trade-offs. Just proper nutrition that fits real life.",
       "dom": "eu.huel.com",
       "img": "assets/huel-31.jpg",
       "video": "",
@@ -2009,7 +2019,7 @@ const LIBRARY = {
     "ads": [
      {
       "h": "When you’re on a GLP-1, hunger can vanish and so can your…",
-      "copy": "When you’re on a GLP-1, hunger can vanish and so can your protein and fibre intake. Huel Black Edition Powder steps in with 400 calories, 40g protein, 6g fibre, and 26+ essential nutrients. It helps you stay…",
+      "copy": "When you’re on a GLP-1, hunger can vanish and so can your protein and fibre intake. Huel Black Edition Powder steps in with 400 calories, 40g protein, 6g fibre, and 26+ essential nutrients. It helps you stay nourished and supported, even on days when eating isn’t top of mind. 💪40g protein, 6g fibre, 400 calories 🥣 Easy portion control 🧑‍⚕️Designed by registered dieticians ♥️Trusted by over 3 million customers",
       "dom": "huel.com",
       "img": "assets/huel-11.jpg",
       "video": "",
@@ -2026,7 +2036,7 @@ const LIBRARY = {
      },
      {
       "h": "Support Your Body On GLP-1s",
-      "copy": "When you’re on a GLP-1, hunger can vanish and so can your protein and fiber intake. Huel Black Edition Powder steps in with 400 calories, 40g protein, 10g fiber, and 26+ essential nutrients and superfoods. It…",
+      "copy": "When you’re on a GLP-1, hunger can vanish and so can your protein and fiber intake. Huel Black Edition Powder steps in with 400 calories, 40g protein, 10g fiber, and 26+ essential nutrients and superfoods. It helps you stay nourished and supported, even on days when eating isn’t top of mind. 💪40g protein, 10g+ fiber, 400 calories 🥣 Easy portion control 🧑‍⚕️Designed by registered dieticians ♥️Trusted by over 4 million customers",
       "dom": "huel.com",
       "img": "assets/huel-19.jpg",
       "video": "",
@@ -2052,7 +2062,7 @@ const LIBRARY = {
     "ads": [
      {
       "h": "🚫 Stop Choosing Between Easy and Nutritious",
-      "copy": "Who said eating well needs to break the bank? 💰 You don’t need a personal chef to feel like a pro. Get all the goodness you need* with Huel Black Edition. Packed with 40g of protein for less than 3 € per meal.…",
+      "copy": "Who said eating well needs to break the bank? 💰 You don’t need a personal chef to feel like a pro. Get all the goodness you need* with Huel Black Edition. Packed with 40g of protein for less than 3 € per meal. 💪 All the nutrients you need in one 🌿 Plant based and gluten free 🍽 Over 500 Million meals sold *Contains vitamin C to support the immune system",
       "dom": "huel.com",
       "img": "assets/huel-17.jpg",
       "video": "",
@@ -2069,7 +2079,7 @@ const LIBRARY = {
      },
      {
       "h": "Who said eating well needs to break the bank?",
-      "copy": "💰 You don’t need a personal chef to feel like a pro. Get all the goodness you need with Huel Black Edition. Packed with 40g of protein for less than 3 € per meal. 💪 All the nutrients you need in one 🌿 Plant…",
+      "copy": "💰 You don’t need a personal chef to feel like a pro. Get all the goodness you need with Huel Black Edition. Packed with 40g of protein for less than 3 € per meal. 💪 All the nutrients you need in one 🌿 Plant based and gluten free 🍽 Over 500 Million meals sold",
       "dom": "eu.huel.com",
       "img": "assets/huel-24.jpg",
       "video": "",
@@ -2086,7 +2096,7 @@ const LIBRARY = {
      },
      {
       "h": "Stop Paying Twice for Lunch!",
-      "copy": "That €10 ‘quick lunch’ costs more than money. It usually leaves you hungry again and reaching for snacks by 3pm. Huel Black Edition Ready-To-Drink gives you: ✅ 35g protein and complete nutrition ⚡ Ready…",
+      "copy": "That €10 ‘quick lunch’ costs more than money. It usually leaves you hungry again and reaching for snacks by 3pm. Huel Black Edition Ready-To-Drink gives you: ✅ 35g protein and complete nutrition ⚡ Ready whenever you are 💷 Less than 4 € per meal* Eat once. Feel sorted for hours. *with a subscription",
       "dom": "huel.com",
       "img": "assets/huel-41.jpg",
       "video": "",
@@ -2112,7 +2122,7 @@ const LIBRARY = {
     "ads": [
      {
       "h": "Find out why it's our most popular flavour",
-      "copy": "So tasty you'll forget its good for you... 🤤 Huel Black Edition Banana will give you that trip down memory lane, tasting just like a Milkshake. It's our most popular flavour for a reason. 💪 High protein meal 🥱…",
+      "copy": "So tasty you'll forget its good for you... 🤤 Huel Black Edition Banana will give you that trip down memory lane, tasting just like a Milkshake. It's our most popular flavour for a reason. 💪 High protein meal 🥱 With 26 essential vitamins and minerals, like iron, to reduce tiredness and fatigue 🥣 Easy portion control 🌿 Simple way to eat more plant based 2,29 € per meal, plus a FREE shaker + tee if you're a new customer!",
       "dom": "huel.com",
       "img": "assets/huel-12.jpg",
       "video": "",
@@ -2129,7 +2139,7 @@ const LIBRARY = {
      },
      {
       "h": "📊 We asked people to add Huel to their routine for 6 weeks.",
-      "copy": "Most said they: ✅ Felt healthier ✅ Snacked less ✅ Had more consistent energy The common thread? Complete nutrition that actually works. *Results from an independent, perception study conducted with 100 healthy…",
+      "copy": "Most said they: ✅ Felt healthier ✅ Snacked less ✅ Had more consistent energy The common thread? Complete nutrition that actually works. *Results from an independent, perception study conducted with 100 healthy adults",
       "dom": "eu.huel.com",
       "img": "assets/huel-42.jpg",
       "video": "",
@@ -2787,7 +2797,7 @@ const LIBRARY = {
     "ads": [
      {
       "h": "Over a week in Kolkata, we gave 3,000 locals the",
-      "copy": "glasses they need to learn, work and live.​ The Hope Foundation is an Irish charity that helps children and adults in Kolkata, India, to access housing, health care and education.​ Through our partnership, we…",
+      "copy": "glasses they need to learn, work and live.​ The Hope Foundation is an Irish charity that helps children and adults in Kolkata, India, to access housing, health care and education.​ Through our partnership, we support them throughout the year, as well as making an annual trip to Kolkata, to see and help as many patients as we can.",
       "dom": "specsavers.ie",
       "img": "assets/specsavers-14.jpg",
       "video": "",
@@ -2931,7 +2941,7 @@ const LIBRARY = {
   "ads": [
    {
     "h": "Laya Limerick - Spectrum Health",
-    "copy": "At Laya healthcare we’re helping you stay #ABeatAhead. That's why we launched an onsite physiotherapist service at Ennis Road. Whether you're a pro athlete, or looking to regain mobility after an injury, find…",
+    "copy": "At Laya healthcare we’re helping you stay #ABeatAhead. That's why we launched an onsite physiotherapist service at Ennis Road. Whether you're a pro athlete, or looking to regain mobility after an injury, find out what physiotherapy can do for you.",
     "dom": "spectrumhealth.ie",
     "img": "assets/laya-00.jpg",
     "video": "",
@@ -2948,7 +2958,7 @@ const LIBRARY = {
    },
    {
     "h": "Laya Health & Wellbeing Clinic, Briarhill",
-    "copy": "At Laya healthcare we’re helping you stay #ABeatAhead. That's why we launched an onsite physiotherapist service at Briarhill. Whether you're a pro athlete, or looking to regain mobility after an injury, find…",
+    "copy": "At Laya healthcare we’re helping you stay #ABeatAhead. That's why we launched an onsite physiotherapist service at Briarhill. Whether you're a pro athlete, or looking to regain mobility after an injury, find out what physiotherapy can do for you.",
     "dom": "spectrumhealth.ie",
     "img": "assets/laya-01.jpg",
     "video": "",
@@ -2965,7 +2975,7 @@ const LIBRARY = {
    },
    {
     "h": "Laya Health & Wellbeing Clinic, Cork",
-    "copy": "At Laya healthcare we’re helping you stay #ABeatAhead. That's why we launched an onsite physiotherapist service at Cork. Whether you're a pro athlete, or looking to regain mobility after an injury, find out…",
+    "copy": "At Laya healthcare we’re helping you stay #ABeatAhead. That's why we launched an onsite physiotherapist service at Cork. Whether you're a pro athlete, or looking to regain mobility after an injury, find out what physiotherapy can do for you.",
     "dom": "spectrumhealth.ie",
     "img": "assets/laya-02.jpg",
     "video": "",
@@ -2982,7 +2992,7 @@ const LIBRARY = {
    },
    {
     "h": "Laya Health & Wellbeing Clinic, Swords",
-    "copy": "At Laya healthcare we’re helping you stay #ABeatAhead. That's why we launched an onsite physiotherapist service at Swords. Whether you're a pro athlete, or looking to regain mobility after an injury, find out…",
+    "copy": "At Laya healthcare we’re helping you stay #ABeatAhead. That's why we launched an onsite physiotherapist service at Swords. Whether you're a pro athlete, or looking to regain mobility after an injury, find out what physiotherapy can do for you.",
     "dom": "spectrumhealth.ie",
     "img": "assets/laya-03.jpg",
     "video": "",
@@ -4265,6 +4275,31 @@ function media(ad){
   return '';
 }
 
+/* Meta clamps a long body to three lines and offers "See more". Ours only
+   appears where the text genuinely overflows, so a short ad never carries a
+   control that does nothing. */
+function markOverflow(root){
+  let n = 0;
+  $$('.fb-text', root).forEach(el => {
+    const more = el.nextElementSibling;
+    if (!more || !more.classList.contains('fb-more')) return;
+    const over = el.scrollHeight > el.clientHeight + 2;
+    more.hidden = !over;
+    if (over) n++;
+  });
+  log('ui','overflow pass',`${n} of ${$$('.fb-text',root).length} bodies clamped`);
+}
+
+document.addEventListener('click', ev => {
+  const btn = ev.target.closest('.fb-more');
+  if (!btn) return;
+  const txt = btn.previousElementSibling;
+  const open = !txt.classList.contains('is-open');
+  txt.classList.toggle('is-open', open);
+  btn.textContent = open ? 'See less' : 'See more';
+  log('input','ad copy toggled',{ open });
+});
+
 /* A faithful Meta feed unit. Sightline's own numbers never sit inside it. */
 function adUnit(ad, data){
   const av = data.avatar
@@ -4285,6 +4320,7 @@ function adUnit(ad, data){
       <span class="fb-dots" aria-hidden="true">•••</span>
     </div>
     <p class="fb-text">${sub(ad.copy, data.brand)}</p>
+    <button class="fb-more" type="button" hidden>See more</button>
     <div class="fb-media${ad.img?'':' is-blank'}">${ad.img ? media(ad) : `<p class="fb-blank">${ad.h}</p>`}</div>
     <div class="fb-link">
       <div class="fb-link-t">
@@ -4377,6 +4413,7 @@ function renderResults(domain){
     panel.hidden = !opening;
     b.classList.toggle('is-open', opening);
     b.childNodes[0].nodeValue = opening ? ' Show fewer ' : ` Show the other ${b.dataset.n} creative${b.dataset.n>1?'s':''} `;
+    if (opening) markOverflow(panel);
     log('input','angle group toggled',{ angle:data.angles[i].name, opening, ads:panel.children.length });
   }));
 
@@ -4414,6 +4451,7 @@ function renderResults(domain){
 
   if (location.hash.slice(1) !== domain) history.replaceState(null,'','#'+domain);
   show('results');
+  markOverflow($('#agroups'));   /* needs layout, so only once the view is up */
   log('render','report painted',(performance.now()-t).toFixed(1)+'ms');
 }
 

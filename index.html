@@ -498,7 +498,13 @@ img{max-width:100%;height:auto;display:block}
    its share, then shows the three longest-running ads making that argument,
    then opens to the rest on request.
    ========================================================================== */
-.agroup{padding:2.5rem 0;border-top:1px solid var(--fog)}
+.agroup{padding:2.5rem 0;border-top:1px solid var(--fog);scroll-margin-top:5.5rem}
+.agroup.is-target .agroup-name{animation:landed 2s var(--ease-out)}
+@keyframes landed{
+  0%{color:var(--accent)}
+  60%{color:var(--accent)}
+  100%{color:var(--black)}
+}
 .agroup:first-child{border-top:0;padding-top:0}
 .agroup-head{display:grid;grid-template-columns:1fr auto;gap:.3rem 1.25rem;align-items:baseline}
 .agroup-name{font-weight:600;font-size:1.35rem;letter-spacing:-.02em;color:var(--black)}
@@ -545,6 +551,7 @@ img{max-width:100%;height:auto;display:block}
 .map .lbl.e{right:.75rem;top:50%;transform:translateY(-50%)}
 .node{
   position:absolute;transform:translate(-50%,-50%);display:grid;place-items:center;
+  cursor:pointer;
   border-radius:50%;background:var(--charcoal);color:var(--white);
   font-size:.8125rem;font-weight:500;
   animation:pop .6s var(--ease-out) both;animation-delay:calc(var(--i) * 110ms);
@@ -560,13 +567,30 @@ img{max-width:100%;height:auto;display:block}
   transition:opacity .3s var(--ease-out);pointer-events:none;
 }
 .node:hover .tip{opacity:1}
+.node:not(.gap):hover{background:var(--accent)}
+.node.gap{cursor:default}
 .node.gap{
   width:5rem;height:5rem;padding:.4rem;text-align:center;line-height:1.2;
   background:rgba(196,85,58,.08);border:1.5px dashed var(--accent);color:var(--accent-hover);
   font-size:.6875rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;
 }
-.legend{display:grid;gap:.6rem}
-.legend i{font-style:normal;display:flex;align-items:center;gap:.6rem;line-height:1.4;font-size:.8125rem;color:var(--graphite)}
+.legend{display:grid;gap:.15rem}
+/* Each row is a way into the ads making that argument. */
+.legend i,.legend button{
+  font-style:normal;display:flex;align-items:center;gap:.6rem;width:100%;
+  line-height:1.4;font-size:.8125rem;color:var(--graphite);text-align:left;
+  padding:.45rem .6rem;margin:0 -.6rem;border-radius:8px;
+  transition:background .25s var(--ease-out),color .25s var(--ease-out);
+}
+.legend button{cursor:pointer}
+.legend button:hover{background:var(--white);color:var(--black)}
+.legend button:hover s{transform:scale(1.35)}
+.legend s{transition:transform .25s var(--ease-out)}
+.legend button .go{
+  margin-left:.4rem;opacity:0;transform:translateX(-3px);color:var(--accent);
+  transition:opacity .25s var(--ease-out),transform .25s var(--ease-out);
+}
+.legend button:hover .go{opacity:1;transform:none}
 .legend s{text-decoration:none;width:8px;height:8px;border-radius:50%;background:var(--charcoal);flex:none}
 .legend .is-gap s{background:rgba(196,85,58,.12);border:1.5px dashed var(--accent);width:10px;height:10px}
 .legend b{margin-left:auto;font-weight:500;color:var(--warm-gray)}
@@ -856,28 +880,15 @@ body.still *,body.still *::before,body.still *::after{
 
     <div class="metrics" id="metrics"></div>
 
-    <!-- 01 — THE ADS, GROUPED BY ARGUMENT -->
-    <section class="sec" id="ads">
-      <div class="sec-label">
-        <span class="rail-n">01</span>
-        <span class="rail-l">The ads</span>
-      </div>
-      <div>
-        <h3 id="ads-title">62 ads running right now</h3>
-        <p class="lede">Grouped by the argument they make, biggest share first. Inside each group the ads are sorted by days on air, because an ad that has run for months is an ad that pays for itself.</p>
-        <div class="sec-body" id="agroups"></div>
-      </div>
-    </section>
-
-    <!-- 03 — POSITIONING -->
+    <!-- 01 — POSITIONING -->
     <section class="sec" id="positioning">
       <div class="sec-label">
-        <span class="rail-n">02</span>
+        <span class="rail-n">01</span>
         <span class="rail-l">Positioning</span>
       </div>
       <div>
         <h3>Where their money sits</h3>
-        <p class="lede">Each cluster is plotted by what its ads promise. The dashed circle is open ground.</p>
+        <p class="lede">Every live ad is filed under one argument, and each cluster sits where its ads promise. The dashed circle is open ground. Pick an argument to jump to the ads making it.</p>
         <div class="sec-body map-grid">
           <div class="map" id="map">
             <span class="axis h"></span><span class="axis v"></span>
@@ -891,6 +902,19 @@ body.still *,body.still *::before,body.still *::after{
             <p class="map-note" id="map-note"></p>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- 02 — THE ADS, GROUPED BY ARGUMENT -->
+    <section class="sec" id="ads">
+      <div class="sec-label">
+        <span class="rail-n">02</span>
+        <span class="rail-l">The ads</span>
+      </div>
+      <div>
+        <h3 id="ads-title">62 ads running right now</h3>
+        <p class="lede">Grouped by the argument they make, biggest share first. Inside each group the ads are sorted by days on air, because an ad that has run for months is an ad that pays for itself.</p>
+        <div class="sec-body" id="agroups"></div>
       </div>
     </section>
 
@@ -4404,7 +4428,7 @@ function renderResults(domain){
   $('#agroups').innerHTML = data.angles.map((a,i)=>{
     const top  = a.ads.slice(0,3);
     const rest = a.ads.slice(3);
-    return `<div class="agroup" style="--i:${i}">
+    return `<div class="agroup" id="ag-${i}" style="--i:${i}">
       <div class="agroup-head">
         <span class="agroup-name">${a.name}</span>
         <span class="agroup-share num">${a.share}% of live ads · ${a.count}</span>
@@ -4433,19 +4457,38 @@ function renderResults(domain){
     log('input','angle group toggled',{ angle:data.angles[i].name, opening, ads:panel.children.length });
   }));
 
+  /* The map is the index. A cluster or a legend row takes you to the ads
+     that make that argument. */
+  const idxOf = name => data.angles.findIndex(a => a.name === name);
+  const jump = name => {
+    const i = idxOf(name), el = i >= 0 ? $('#ag-'+i) : null;
+    if (!el) return;
+    $$('.agroup.is-target').forEach(g => g.classList.remove('is-target'));
+    el.scrollIntoView({ behavior:'smooth', block:'start' });
+    el.classList.add('is-target');
+    setTimeout(()=>el.classList.remove('is-target'), 2200);
+    log('input','jumped to angle',{ angle:name, group:i });
+  };
+
   const map = $('#map');
   $$('.node',map).forEach(n=>n.remove());
   map.insertAdjacentHTML('beforeend',
     data.nodes.map((n,i)=>{
       const size = 30 + n.n * 1.9;
-      return `<span class="node num" style="--i:${i};left:${n.x}%;top:${n.y}%;width:${size}px;height:${size}px">${n.n}<span class="tip">${n.l} · ${n.n} ads</span></span>`;
+      return `<span class="node num" data-jump="${n.l.replace(/"/g,'&quot;')}" style="--i:${i};left:${n.x}%;top:${n.y}%;width:${size}px;height:${size}px">${n.n}<span class="tip">${n.l} · ${n.n} ads</span></span>`;
     }).join('') +
     `<span class="node gap" style="--i:6;left:${data.gap.x}%;top:${data.gap.y}%">${data.gap.l}</span>`
   );
 
   $('#legend').innerHTML =
-    data.nodes.map(n=>`<i><s></s>${n.l}<b class="num">${n.n} ads</b></i>`).join('') +
+    data.nodes.map(n=>`<button type="button" data-jump="${n.l.replace(/"/g,'&quot;')}">
+      <s></s>${n.l}
+      <svg class="go" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+      <b class="num">${n.n} ads</b>
+    </button>`).join('') +
     `<i class="is-gap"><s></s>Unclaimed corner<b class="num">0 ads</b></i>`;
+
+  $$('[data-jump]').forEach(el => el.addEventListener('click', () => jump(el.dataset.jump)));
   $('#map-note').textContent = data.mapNote;
 
   const topRun = Math.max(...data.winners.map(w=>w.days));

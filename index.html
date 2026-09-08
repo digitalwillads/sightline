@@ -848,7 +848,7 @@ body.still *,body.still *::before,body.still *::after{
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
             <path d="M2 12s3.6-6 10-6 10 6 10 6-3.6 6-10 6-10-6-10-6z"/><circle cx="12" cy="12" r="2.6"/>
           </svg>
-          Watch this brand
+          Add to weekly email
         </button>
         <button class="ctrl" id="btn-new">New search</button>
       </div>
@@ -950,26 +950,26 @@ body.still *,body.still *::before,body.still *::after{
       <div class="glow" aria-hidden="true"><span class="orb"></span><span class="orb"></span><span class="orb"></span></div>
       <div class="alerts-in">
         <div>
-          <p class="eyebrow eyebrow-soft">Change alerts</p>
-          <h3>Know the day they launch a new ad.</h3>
-          <p>Sightline re-reads the library every six hours. When a new creative appears, an old one dies,
-             or the angle mix shifts, you get one short email.</p>
+          <p class="eyebrow eyebrow-soft">Weekly email</p>
+          <h3>One email a week on what they changed.</h3>
+          <p>Sightline re-reads the library once a week. New creatives, dead ones and any shift in the
+             angle mix arrive together, in one short Monday email.</p>
         </div>
         <div>
           <form class="alerts-form" id="form-alerts" novalidate>
             <div class="field field-dark" id="field-alerts">
               <input type="email" id="input-alerts" placeholder="you@company.com" autocomplete="email" />
             </div>
-            <button class="btn btn-primary" type="submit">Start watching</button>
-            <p class="help">Weekly digest. Instant alert on a new launch. Unsubscribe in one click.</p>
+            <button class="btn btn-primary" type="submit">Get the weekly email</button>
+            <p class="help">One email, Monday mornings. Unsubscribe in one click.</p>
             <p class="err" id="err-alerts" hidden></p>
           </form>
           <div class="sent" id="alerts-sent" hidden>
             <b>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-soft)" stroke-width="2.4" stroke-linecap="round"><path d="M4 12.5l5 5L20 6.5"/></svg>
-              <span id="sent-title">Watching Huel.</span>
+              <span id="sent-title">Huel is on your weekly email.</span>
             </b>
-            <p id="sent-body">Confirmation sent. Your first digest lands Monday at 7am. Add two more brands from any search.</p>
+            <p id="sent-body">Confirmation sent. The first one lands Monday at 7am. Add two more brands from any search.</p>
           </div>
         </div>
       </div>
@@ -1005,8 +1005,8 @@ body.still *,body.still *::before,body.still *::after{
     </button>
     <div id="modal-step-1">
       <p class="eyebrow">Free account</p>
-      <h4 id="modal-title">Track three competitors. Get told when they move.</h4>
-      <p id="modal-sub">We email you the moment a watched brand launches a new ad, plus a Monday digest of what changed.</p>
+      <h4 id="modal-title">Track three competitors. One email a week.</h4>
+      <p id="modal-sub">Every Monday we send what changed across the brands you track: new ads, dead ads, and any shift in the angle mix.</p>
       <form class="modal-form" id="form-modal" novalidate>
         <div class="field" id="field-modal">
           <input type="email" id="input-modal" placeholder="you@company.com" autocomplete="email" />
@@ -1014,12 +1014,12 @@ body.still *,body.still *::before,body.still *::after{
         <button class="btn btn-primary" type="submit" id="modal-submit">Create my account</button>
         <p class="err" id="err-modal" hidden></p>
       </form>
-      <p class="mini">No card. Cancel the emails any time.</p>
+      <p class="mini">No card. Unsubscribe any time.</p>
     </div>
     <div id="modal-step-2" hidden style="text-align:center">
       <div class="tick"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fefefe" stroke-width="2.4" stroke-linecap="round"><path d="M4 12.5l5 5L20 6.5"/></svg></div>
       <h4>Check your inbox.</h4>
-      <p id="modal-done-sub">We sent a confirmation link. Your watchlist is live the second you click it.</p>
+      <p id="modal-done-sub">We sent a confirmation link. The weekly email starts the moment you click it.</p>
       <button class="btn btn-secondary" id="modal-done" style="width:100%;margin-top:1.35rem">Back to the report</button>
     </div>
   </div>
@@ -4387,8 +4387,8 @@ function renderResults(domain){
     ? `<img src="${data.avatar}" alt="${brand} logo">`
     : monogram(brand);
   $('#ads-title').textContent   = `${data.total} ads running right now`;
-  $('#sent-title').textContent  = `Watching ${brand}.`;
-  $('#modal-title').textContent = `Get told the day ${brand} launches a new ad.`;
+  $('#sent-title').textContent  = `${brand} is on your weekly email.`;
+  $('#modal-title').textContent = `See what ${brand} changed, every Monday.`;
 
   $('#metrics').innerHTML = data.stats.map((m,i)=>`
     <div class="metric" style="--i:${i}">
@@ -4478,7 +4478,7 @@ function startWatch(email, source){
   $('#alerts-sent').hidden = false;
   const b = $('#btn-watch');
   b.classList.add('is-on');
-  b.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 12.5l5 5L20 6.5"/></svg> Watching ${STATE.brand}`;
+  b.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 12.5l5 5L20 6.5"/></svg> On your weekly email`;
   log('convert','watch started',{ source, email, brand:STATE.brand, domain:STATE.domain });
 }
 
@@ -4588,7 +4588,7 @@ function briefFor(mine, data){
     <div class="brief-cta" id="brief-cta">
       <div>
         <h4>Want the full brief?</h4>
-        <p>The long version names the offer, the landing page and the budget split to test it with. We send it as a PDF, and we watch ${brand} for you while you run it.</p>
+        <p>The long version names the offer, the landing page and the budget split to test it with. We send it as a PDF, and ${brand} joins your weekly email while you run it.</p>
       </div>
       <form class="brief-send" id="form-brief-send" novalidate>
         <div class="field" id="field-brief-send">
@@ -4603,7 +4603,7 @@ function briefFor(mine, data){
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"><path d="M4 12.5l5 5L20 6.5"/></svg>
         On its way.
       </b>
-      <p style="color:var(--stone)">The brief lands in a few minutes, and ${brand} is on your watchlist from now.</p>
+      <p style="color:var(--stone)">The brief lands in a few minutes, and ${brand} joins your weekly email.</p>
     </div>`;
 }
 
@@ -4704,8 +4704,8 @@ $('#form-modal').addEventListener('submit', ev => {
     $('#modal-step-1').hidden = true;
     $('#modal-step-2').hidden = false;
     $('#modal-done-sub').textContent = STATE.brand
-      ? `We sent a confirmation link. ${STATE.brand} is on your watchlist the second you click it.`
-      : 'We sent a confirmation link. Your watchlist is live the second you click it.';
+      ? `We sent a confirmation link. ${STATE.brand} joins your weekly email the moment you click it.`
+      : 'We sent a confirmation link. The weekly email starts the moment you click it.';
     log('convert','account created',{ email, elapsed:(performance.now()-t).toFixed(0)+'ms' });
     if (!$('#view-results').hidden){
       $('#input-alerts').value = email;

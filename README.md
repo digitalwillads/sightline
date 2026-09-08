@@ -4,6 +4,7 @@ A competitor ad-intelligence prototype, built as a lead magnet for
 Digital Will Ads. Paste a competitor's website; the report shows every ad
 they are running, how long each has survived, the persuasion angle behind
 each one, and where their spend sits against the corner nobody has claimed.
+An account puts a brand on a weekly email of what changed.
 
 **Live:** https://digitalwillads.github.io/sightline/
 
@@ -27,7 +28,7 @@ as such in the report header.
 Meta discloses non-political ads only where they deliver inside the EU, so the
 pull is scoped to Ireland. A US-only advertiser returns nothing from the
 official API. A production build needs its own scraper and daily snapshots,
-because "days running" and the new-ad alert both depend on stored history.
+because "days running" and the weekly change email both depend on stored history.
 
 ## Rebuilding the data
 

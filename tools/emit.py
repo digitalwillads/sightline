@@ -91,6 +91,7 @@ for f,dom,page,slug in BRANDS:
         top=d['ads'][by[a][0]]
         angles.append(dict(name=a, share=round(mix[a]/tot*100), count=mix[a],
                            ex=trim(ex[a],64), exDays=top['days'],
+                           note=label.NOTES.get(dom,{}).get(a,''),
                            ads=[card(i) for i in by[a]]))
     nodes=[dict(x=L['map'][a][0], y=L['map'][a][1], n=mix[a], l=a) for a in order if a in L['map']]
     win=[dict(t=trim(d['ads'][i]['h'],70),

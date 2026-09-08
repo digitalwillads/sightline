@@ -38,19 +38,6 @@ for f,dom,page,slug in BRANDS:
     ex={}
     for r in d['ads']:
         ex.setdefault(r['angle'], r['h'] or r['copy'][:60])
-    # Each angle carries the creatives filed under it, longest-running first,
-    # so the share bar can be checked against the ads themselves.
-    by=collections.defaultdict(list)
-    for i,r in enumerate(d['ads']): by[r['angle']].append(i)
-    angles=[]
-    for a in order:
-        idxs=by[a][:4]
-        thumbs=[dict(img=f'assets/{slug}-{i:02d}.jpg', h=trim(d['ads'][i]['h'],52), days=d['ads'][i]['days'])
-                for i in idxs if os.path.exists(os.path.join(ASSETS,f'{slug}-{i:02d}.jpg'))]
-        top=d['ads'][by[a][0]]
-        angles.append(dict(name=a, share=round(mix[a]/tot*100), count=mix[a],
-                           ex=trim(ex[a],64), exDays=top['days'],
-                           thumbs=thumbs, rest=max(0, mix[a]-len(thumbs))))
     plats=sorted({p for r in d['ads'] for p in r['plats']})
     # Advertisers reuse one link title across many creatives. When a headline
     # repeats, fall back to the ad's own opening line so the grid reads as
@@ -72,10 +59,11 @@ for f,dom,page,slug in BRANDS:
             if len(rest)>60: c=rest
         return trim(c,210)
     units=UNITS.get(slug,[])
-    cards=[]
-    for n,r in enumerate(d['ads'][:12]):
+
+    def card(n):
+        r=d['ads'][n]
         h=headline(r)
-        u=units[n] if n<len(units) else {}
+        u=(units[n] if n<len(units) and isinstance(units[n],dict) else {})
         # Meta stacks caption, headline, description, button. When the scraped
         # description is just the headline again, the ad had no description.
         title=trim(r['h'],62)          # the link title Meta actually renders
@@ -85,12 +73,25 @@ for f,dom,page,slug in BRANDS:
         vid=f'assets/{slug}-{n:02d}.mp4'
         has_img=os.path.exists(os.path.join(ASSETS,f'{slug}-{n:02d}.jpg'))
         has_vid=os.path.exists(os.path.join(ASSETS,f'{slug}-{n:02d}.mp4'))
-        cards.append(dict(h=h, copy=body(r,h), dom=r['dom'],
-                          img=img if has_img else '', video=vid if has_vid else '',
-                          cta=u.get('cta',''), desc=trim(desc,60), cap=host(r['dom'] or u.get('cap'), dom), title=title,
-                          days=r['days'], first=datefmt(r['first']), variants=r['variants'],
-                          angle=r['angle'], plats=' · '.join(PLAT.get(p,p) for p in r['plats'][:3]),
-                          reach=human(r['reach'])))
+        return dict(h=h, copy=body(r,h), dom=r['dom'],
+                    img=img if has_img else '', video=vid if has_vid else '',
+                    cta=u.get('cta',''), desc=trim(desc,60), cap=host(r['dom'] or u.get('cap'), dom), title=title,
+                    days=r['days'], first=datefmt(r['first']), variants=r['variants'],
+                    angle=r['angle'], plats=' · '.join(PLAT.get(p,p) for p in r['plats'][:3]),
+                    reach=human(r['reach']))
+
+    cards=[card(n) for n in range(min(12,len(d['ads'])))]
+
+    # Each angle carries the creatives filed under it, longest-running first,
+    # so the share bar can be checked against the ads themselves.
+    by=collections.defaultdict(list)
+    for i,r in enumerate(d['ads']): by[r['angle']].append(i)
+    angles=[]
+    for a in order:
+        top=d['ads'][by[a][0]]
+        angles.append(dict(name=a, share=round(mix[a]/tot*100), count=mix[a],
+                           ex=trim(ex[a],64), exDays=top['days'],
+                           ads=[card(i) for i in by[a]]))
     nodes=[dict(x=L['map'][a][0], y=L['map'][a][1], n=mix[a], l=a) for a in order if a in L['map']]
     win=[dict(t=trim(d['ads'][i]['h'],70),
               s=f"{d['ads'][i]['variants']} variant{'s' if d['ads'][i]['variants']>1 else ''} · {human(d['ads'][i]['reach'])} EU reach",

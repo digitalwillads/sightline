@@ -193,22 +193,12 @@ img{max-width:100%;height:auto;display:block}
 @media (max-width:1000px){ .hero-in{grid-template-columns:1fr;gap:3rem;padding-top:3.5rem;padding-bottom:4rem} }
 
 .hero-in h1{
-  font-weight:600;font-size:clamp(2.35rem,4.4vw,3.6rem);line-height:1.08;
-  letter-spacing:-.02em;color:var(--white);text-wrap:balance;margin:1.25rem 0 0;
+  margin-top:0;font-weight:600;font-size:clamp(2.35rem,4.4vw,3.6rem);line-height:1.08;
+  letter-spacing:-.02em;color:var(--white);text-wrap:balance;
 }
 .hero-in h1 em{font-style:normal;color:var(--accent-soft)}
 .hero-lede{
   margin:1.5rem 0 0;max-width:46ch;color:var(--silver);font-size:1.0625rem;text-wrap:pretty;
-}
-.live-kicker{display:flex;align-items:center;gap:.6rem}
-.dot{
-  width:7px;height:7px;border-radius:50%;background:var(--accent-soft);flex:none;
-  box-shadow:0 0 0 0 rgba(208,96,80,.45);animation:breathe 2.6s var(--ease-out) infinite;
-}
-@keyframes breathe{
-  0%{box-shadow:0 0 0 0 rgba(208,96,80,.45)}
-  70%{box-shadow:0 0 0 9px rgba(208,96,80,0)}
-  100%{box-shadow:0 0 0 0 rgba(208,96,80,0)}
 }
 
 /* search */
@@ -247,12 +237,6 @@ img{max-width:100%;height:auto;display:block}
 }
 .chip:hover{border-color:var(--accent-soft);color:var(--white);transform:translateY(-1px)}
 
-.trust{display:flex;flex-wrap:wrap;gap:1.5rem;margin-top:2.25rem}
-.trust i{
-  font-style:normal;display:flex;align-items:center;gap:.5rem;
-  font-size:.8125rem;color:var(--warm-gray);
-}
-.trust svg{color:var(--stone)}
 
 /* hero panel: live stream of tracked brands */
 .panel{
@@ -266,7 +250,6 @@ img{max-width:100%;height:auto;display:block}
   animation:sweep 4.8s linear infinite;pointer-events:none;
 }
 @keyframes sweep{ to{ transform:translateY(760px) } }
-.panel-head{display:flex;align-items:center;gap:.6rem;padding:.15rem .35rem 1.1rem}
 .panel-rows{display:grid;gap:.6rem}
 .panel-row{
   display:grid;grid-template-columns:46px 1fr auto;gap:.85rem;align-items:center;
@@ -737,11 +720,6 @@ p.eyebrow-mute{color:var(--warm-gray)}
   <div class="glow" aria-hidden="true"><span class="orb"></span><span class="orb"></span><span class="orb"></span></div>
   <div class="wrap hero-in">
     <div>
-      <div class="live-kicker">
-        <span class="dot" aria-hidden="true"></span>
-        <span class="eyebrow eyebrow-soft">Live from the Meta Ad Library</span>
-      </div>
-
       <h1>Every ad your competitor is running. <em>And why each one exists.</em></h1>
 
       <p class="hero-lede">
@@ -769,18 +747,9 @@ p.eyebrow-mute{color:var(--warm-gray)}
         </div>
       </form>
 
-      <div class="trust">
-        <i><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l7 3v6c0 4.2-2.9 7.6-7 9-4.1-1.4-7-4.8-7-9V6z"/></svg> Public ad data only</i>
-        <i><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Refreshed every 6 hours</i>
-        <i><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 12h10M4 18h7"/></svg> Every EU-delivered ad</i>
-      </div>
     </div>
 
     <aside class="panel" aria-hidden="true">
-      <div class="panel-head">
-        <span class="dot"></span>
-        <span class="tech">AD LIBRARY · STREAMING</span>
-      </div>
       <div class="panel-rows" id="panel-rows"></div>
     </aside>
   </div>
